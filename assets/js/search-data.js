@@ -79,51 +79,41 @@ ninja.data = [{
           section: "News",},{id: "news-launched-this-site-hello",
           title: 'Launched this site. Hello.',
           description: "",
-          section: "News",},{id: "projects-project-1",
-          title: 'project 1',
-          description: "with background image",
+          section: "News",},{id: "projects-embedded-soc-design-rv32im",
+          title: 'Embedded SoC Design (RV32IM)',
+          description: "RISC-V SoC with UART, SPI, and QSPI interfaces, validated on FPGA using SkyWater SKY130A PDK.",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/1_project/";
-            },},{id: "projects-project-2",
-          title: 'project 2',
-          description: "a project with a background image and giscus comments",
+              window.location.href = "/projects/1_soc_riscv/";
+            },},{id: "projects-8-bit-risc-v-cpu-for-iot",
+          title: '8-bit RISC-V CPU for IoT',
+          description: "Energy-efficient 8-bit RISC-V CPU designed for low-power IoT applications, submitted to Tiny Tapeout 9.",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/2_project/";
-            },},{id: "projects-project-3-with-very-long-name",
-          title: 'project 3 with very long name',
-          description: "a project that redirects to another website",
+              window.location.href = "/projects/2_riscv_cpu/";
+            },},{id: "projects-6t-sram-array-implementation",
+          title: '6T SRAM Array Implementation',
+          description: "Fabrication-ready 6T SRAM cell and array designed in SkyWater SKY130A PDK with improved read/write stability margins.",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/3_project/";
-            },},{id: "projects-project-4",
-          title: 'project 4',
-          description: "another without an image",
+              window.location.href = "/projects/3_sram/";
+            },},{id: "projects-layered-systemverilog-testbench",
+          title: 'Layered SystemVerilog Testbench',
+          description: "Structured verification environment for a 4-bit shift register, implementing a full layered testbench architecture.",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/4_project/";
-            },},{id: "projects-project-5",
-          title: 'project 5',
-          description: "a project with a background image",
+              window.location.href = "/projects/4_testbench/";
+            },},{id: "projects-4-bit-flash-adc-architecture",
+          title: '4-bit Flash ADC Architecture',
+          description: "High-speed 4-bit Flash ADC using a 2-stage Op-Amp comparator, Bandgap Reference, and Wallace Tree encoder.",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/5_project/";
-            },},{id: "projects-project-6",
-          title: 'project 6',
-          description: "a project with no image",
+              window.location.href = "/projects/5_flash_adc/";
+            },},{id: "projects-flexible-cla-adder-design",
+          title: 'Flexible CLA Adder Design',
+          description: "Modular carry-lookahead adder design optimized for timing, area, and scalability.",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/6_project/";
-            },},{id: "projects-project-7",
-          title: 'project 7',
-          description: "with background image",
+              window.location.href = "/projects/6_cla_adder/";
+            },},{id: "projects-atm-management-system",
+          title: 'ATM Management System',
+          description: "Python ATM simulator with GUI, MySQL integration, and facial recognition for secure transactions.",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/7_project/";
-            },},{id: "projects-project-8",
-          title: 'project 8',
-          description: "an other project with a background image and giscus comments",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/8_project/";
-            },},{id: "projects-project-9",
-          title: 'project 9',
-          description: "another project with an image 🎉",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/9_project/";
+              window.location.href = "/projects/7_atm/";
             },},{id: "teachings-data-science-fundamentals",
           title: 'Data Science Fundamentals',
           description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
