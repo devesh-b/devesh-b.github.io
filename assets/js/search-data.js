@@ -18,7 +18,7 @@ ninja.data = [{
           },
         },{id: "nav-projects",
           title: "projects",
-          description: "A growing collection of your cool projects.",
+          description: "Selected hardware, analog, and software projects — from RISC-V SoCs to mixed-signal IC design.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/projects/";
