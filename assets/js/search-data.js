@@ -51,15 +51,15 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/collaborate/";
           },
-        },{id: "post-a-quiet-beginning",
+        },{id: "post-satcom-transceivers-how-they-work-and-where-the-hard-problems-are",
         
-          title: "A quiet beginning",
+          title: "SATCOM transceivers — how they work and where the hard problems are",
         
-        description: "First post — what this site is for.",
+        description: "A technical overview of satellite communication transceiver architecture, with a focus on Ka-band systems and the open IC design problems that still don&#39;t have clean answers.",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2025/welcome/";
+            window.location.href = "/blog/2025/satcom-transceivers/";
           
         },
       },{id: "books-the-godfather",
