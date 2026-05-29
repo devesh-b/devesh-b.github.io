@@ -286,10 +286,19 @@
       if (!halo) return;
       halo.style.display = 'block';
 
+      var tx = window.innerWidth / 2, ty = window.innerHeight / 2;
+
       document.addEventListener('mousemove', function (e) {
-        halo.style.setProperty('--halo-x', e.clientX + 'px');
-        halo.style.setProperty('--halo-y', e.clientY + 'px');
+        tx = e.clientX;
+        ty = e.clientY;
       });
+
+      function tick() {
+        halo.style.setProperty('--halo-x', tx + 'px');
+        halo.style.setProperty('--halo-y', ty + 'px');
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
 
       /* Card glow */
       document.querySelectorAll('.card-glow').forEach(function (card) {
