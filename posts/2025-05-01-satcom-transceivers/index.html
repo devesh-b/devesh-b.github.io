@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="academic-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SATCOM transceivers — how they work and where the hard problems are | Devesh Bhaskaran</title>
+  <meta name="description" content="Digital Design Engineer at Analog Devices India — working at the boundary where digital, analog, and RF have to learn to live together.">
+  <meta property="og:title" content="SATCOM transceivers — how they work and where the hard problems are">
+  <meta property="og:description" content="Digital Design Engineer at Analog Devices India — working at the boundary where digital, analog, and RF have to learn to live together.">
+  <meta property="og:type" content="website">
+
+  <!-- Anti-FOUC: set theme before paint -->
+  <script>
+    (function () {
+      var s = localStorage.getItem('db-theme');
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var t = s === 'dark' ? 'academic-dark' : s === 'light' ? 'academic-light' : d ? 'academic-dark' : 'academic-light';
+      document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.setAttribute('data-color-scheme', t === 'academic-dark' ? 'dark' : 'light');
+    })();
+  </script>
+
+  <link rel="stylesheet" crossorigin href="/assets/syntax-BD9cdhWO.css">
+</head>
+<body class="min-h-screen bg-base-100 text-base-content antialiased">
+
+  <!-- Cursor halo layer -->
+  <div id="cursor-halo" aria-hidden="true"></div>
+
+  <!-- Navbar -->
+  <header class="navbar-blur fixed top-0 left-0 right-0 z-50 border-b border-base-200">
+    <div class="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between w-full">
+
+      <!-- Brand -->
+      <a href="/" class="font-heading font-semibold text-sm text-base-content hover:text-primary transition-colors tracking-tight">
+        Devesh Bhaskaran
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-1">
+        
+        
+          
+            
+          
+          <a href="/"
+             class="px-3 py-1.5 rounded text-sm transition-colors text-base-content/60 hover:text-base-content">
+            About
+          </a>
+        
+          
+            
+            
+          
+          <a href="/publications/"
+             class="px-3 py-1.5 rounded text-sm transition-colors text-base-content/60 hover:text-base-content">
+            Publications
+          </a>
+        
+          
+            
+            
+          
+          <a href="/projects/"
+             class="px-3 py-1.5 rounded text-sm transition-colors text-base-content/60 hover:text-base-content">
+            Projects
+          </a>
+        
+          
+            
+            
+          
+          <a href="/teaching/"
+             class="px-3 py-1.5 rounded text-sm transition-colors text-base-content/60 hover:text-base-content">
+            Teaching
+          </a>
+        
+          
+            
+            
+          
+          <a href="/blog/"
+             class="px-3 py-1.5 rounded text-sm transition-colors text-base-content/60 hover:text-base-content">
+            Blog
+          </a>
+        
+          
+            
+            
+          
+          <a href="/collaborate/"
+             class="px-3 py-1.5 rounded text-sm transition-colors text-base-content/60 hover:text-base-content">
+            Collaborate
+          </a>
+        
+      </nav>
+
+      <!-- Right actions -->
+      <div class="flex items-center gap-1">
+        <!-- CV PDF link -->
+        <a href="/assets/pdf/Devesh_Academic_CV.pdf"
+           target="_blank" rel="noopener"
+           title="Download CV"
+           class="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded text-sm font-mono text-base-content/50 hover:text-primary transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          cv
+        </a>
+
+        <!-- Theme toggle -->
+        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"
+                class="w-9 h-9 flex items-center justify-center rounded text-base-content/50 hover:text-base-content transition-colors">
+          <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+
+        <!-- Mobile menu -->
+        <div class="md:hidden relative" id="mobile-menu-container">
+          <button onclick="toggleMobileMenu()" aria-label="Menu"
+                  class="w-9 h-9 flex items-center justify-center rounded text-base-content/50 hover:text-base-content transition-colors">
+            <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+          <div id="mobile-menu"
+               class="hidden absolute right-0 top-full mt-2 w-44 bg-base-100 border border-base-200 rounded-lg shadow-lg py-1 z-50">
+            
+            <a href="/" class="block px-4 py-2 text-sm text-base-content/70 hover:text-primary hover:bg-base-200 transition-colors">About</a>
+            
+            <a href="/publications/" class="block px-4 py-2 text-sm text-base-content/70 hover:text-primary hover:bg-base-200 transition-colors">Publications</a>
+            
+            <a href="/projects/" class="block px-4 py-2 text-sm text-base-content/70 hover:text-primary hover:bg-base-200 transition-colors">Projects</a>
+            
+            <a href="/teaching/" class="block px-4 py-2 text-sm text-base-content/70 hover:text-primary hover:bg-base-200 transition-colors">Teaching</a>
+            
+            <a href="/blog/" class="block px-4 py-2 text-sm text-base-content/70 hover:text-primary hover:bg-base-200 transition-colors">Blog</a>
+            
+            <a href="/collaborate/" class="block px-4 py-2 text-sm text-base-content/70 hover:text-primary hover:bg-base-200 transition-colors">Collaborate</a>
+            
+            <div class="border-t border-base-200 mt-1 pt-1">
+              <a href="/assets/pdf/Devesh_Academic_CV.pdf" target="_blank"
+                 class="block px-4 py-2 text-sm text-base-content/70 hover:text-primary hover:bg-base-200 transition-colors font-mono">cv ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page content -->
+  <main class="pt-14">
+    
+
+<article class="max-w-4xl mx-auto px-6 py-20">
+
+  <!-- Header -->
+  <header class="mb-12 max-w-2xl">
+    <div class="eyebrow mb-4">Writing</div>
+    <h1 class="font-heading font-semibold text-3xl md:text-4xl tracking-tight leading-tight text-base-content">
+      SATCOM transceivers — how they work and where the hard problems are
+    </h1>
+    
+    <p class="mt-3 text-base-content/55 text-base leading-relaxed font-light">A technical overview of satellite communication transceiver architecture, with a focus on Ka-band systems and the open IC design problems that still don't have clean answers.</p>
+    
+    <div class="font-mono text-xs text-base-content/30 mt-4 flex flex-wrap items-center gap-3">
+      <span>2025-05-01</span>
+      
+      
+      <a href="/tags/RF.html"
+         class="text-base-content/40 hover:text-primary transition-colors">RF</a><span class="opacity-30">·</span>
+      
+      <a href="/tags/SATCOM.html"
+         class="text-base-content/40 hover:text-primary transition-colors">SATCOM</a><span class="opacity-30">·</span>
+      
+      <a href="/tags/circuits.html"
+         class="text-base-content/40 hover:text-primary transition-colors">circuits</a><span class="opacity-30">·</span>
+      
+      <a href="/tags/research.html"
+         class="text-base-content/40 hover:text-primary transition-colors">research</a>
+      
+      
+    </div>
+  </header>
+
+  <!-- Divider -->
+  <div class="border-t border-base-200 mb-10"></div>
+
+  <!-- Body -->
+  <div class="prose prose-sm md:prose-base max-w-3xl text-justify
+              prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+              prose-headings:font-heading prose-headings:font-semibold prose-headings:tracking-tight
+              prose-headings:text-left
+              prose-code:font-mono prose-code:text-primary
+              dark:prose-invert">
+    <p>Satellite communication has been around long enough to feel solved. It isn't.</p>
+<p>The basic picture is familiar: a ground terminal uplinks a modulated RF carrier to a satellite, which amplifies, frequency-shifts, and retransmits it back down to a different ground location. But the IC-level reality — building the transceiver that does this work — involves a tightly coupled set of constraints that get harder, not easier, as the industry moves toward higher frequencies, higher modulation orders, and lower-orbit constellations.</p>
+<p>This is a brief technical survey of how Ka-band SATCOM transceivers are structured and where the genuinely open problems sit.</p>
+<h2 id="the-basic-architecture">The basic architecture</h2>
+<figure>
+  <svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:720px;font-family:monospace;font-size:12px;">
+    <rect x="10" y="30" width="80" height="40" rx="4" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+    <text x="50" y="55" text-anchor="middle" fill="currentColor">ANT</text>
+    <line x1="90" y1="50" x2="120" y2="50" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+    <rect x="120" y="30" width="80" height="40" rx="4" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+    <text x="160" y="55" text-anchor="middle" fill="currentColor">LNA</text>
+    <line x1="200" y1="50" x2="230" y2="50" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+    <rect x="230" y="30" width="80" height="40" rx="4" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+    <text x="270" y="55" text-anchor="middle" fill="currentColor">MIXER</text>
+    <line x1="310" y1="50" x2="340" y2="50" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+    <rect x="340" y="30" width="80" height="40" rx="4" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+    <text x="380" y="55" text-anchor="middle" fill="currentColor">VGA</text>
+    <line x1="420" y1="50" x2="450" y2="50" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+    <rect x="450" y="30" width="80" height="40" rx="4" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+    <text x="490" y="55" text-anchor="middle" fill="currentColor">ADC</text>
+    <line x1="530" y1="50" x2="560" y2="50" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+    <rect x="560" y="30" width="100" height="40" rx="4" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+    <text x="610" y="55" text-anchor="middle" fill="currentColor">BASEBAND</text>
+    <rect x="230" y="120" width="80" height="40" rx="4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.5"/>
+    <text x="270" y="145" text-anchor="middle" fill="currentColor">LO / PLL</text>
+    <line x1="270" y1="120" x2="270" y2="70" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.4"/>
+    <text x="360" y="190" text-anchor="middle" fill="currentColor" opacity="0.4" font-size="11">Ka-band receive chain — LO/PLL shown as the critical shared block</text>
+  </svg>
+</figure>
+
+<p>Most modern Ka-band ground terminal transceivers use a heterodyne or direct-conversion architecture. The receive chain runs: antenna → LNA → mixer (downconversion from Ka-band to IF or baseband) → variable gain amplifier → ADC → digital baseband. The transmit chain mirrors this, with a PA at the output stage.</p>
+<p>At Ka-band (17–21 GHz downlink, 27–31 GHz uplink for most SATCOM allocations), several things become immediately painful.</p>
+<p><strong>Path loss.</strong> Free-space path loss scales as the square of frequency. At 30 GHz you're already fighting roughly 20 dB more loss than at 3 GHz. This puts heavy pressure on both the LNA noise figure on receive and the PA output power and efficiency on transmit. A 1 dB improvement in LNA NF directly improves link margin by 1 dB — which is why the LNA is the most specification-sensitive block in the receive chain.</p>
+<p><strong>Local oscillator phase noise.</strong> The LO is the frequency reference of the transceiver — any phase noise it carries corrupts the demodulated constellation at baseband. An LO that's adequate for QPSK becomes a bottleneck when you're trying to sustain 256APSK, which DVB-S2X now requires for high-throughput terminals. At 30 GHz, even a well-designed PLL accumulates more absolute phase error than at lower frequencies simply because the division ratio from a crystal reference is larger — multiply a 100 MHz reference up to 30 GHz and you've multiplied every noise contribution by 20·log(300) ≈ 49 dB.</p>
+<p><strong>I/Q mismatch.</strong> Direct-conversion architectures are attractive for integration density but sensitive to amplitude and phase imbalance between the I and Q paths. At Ka-band, even small layout asymmetries produce measurable EVM degradation. Calibration helps but costs area and power.</p>
+<h2 id="technology-choices-gaas-vs-cmos">Technology choices: GaAs vs. CMOS</h2>
+<p>Until recently, Ka-band SATCOM front-ends were almost exclusively built in GaAs or SiGe BiCMOS — process nodes with high f<sub>t</sub>/f<sub>max</sub>, good PA efficiency, and low noise figures. The cost is integration density: a full transceiver in GaAs is a multi-chip module, not a single die.</p>
+<p>The research push of the past several years has been toward standard CMOS implementations. The first Ka-band SATCOM transceiver in standard CMOS was demonstrated by Okada's group at Tokyo Institute of Technology, using a direct-conversion architecture with dual-channel RX for polarization and frequency duplexing <a href="#references">[1]</a>. The motivation is clear: CMOS allows co-integration of the analog RF front-end with the digital baseband, reducing board area, power, and cost — all critical for mass-market LEO terminal scenarios.</p>
+<p>The penalty is that CMOS transistors have lower f<sub>max</sub> than SiGe HBTs at equivalent nodes, and CMOS PAs suffer efficiency problems at mm-wave due to low supply voltages and lossy substrates. These aren't insurmountable, but they require architectural creativity — stacked PA topologies, transformer-based power combining, and careful LO distribution to manage phase noise across the die.</p>
+<h2 id="the-leo-problem">The LEO problem</h2>
+<figure>
+  <svg viewBox="0 0 720 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:720px;font-family:monospace;font-size:11px;">
+    <circle cx="360" cy="160" r="50" fill="none" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+    <text x="360" y="164" text-anchor="middle" fill="currentColor" font-size="12">EARTH</text>
+    <path d="M 100 60 Q 360 -30 620 60" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="6,3" opacity="0.4"/>
+    <text x="360" y="18" text-anchor="middle" fill="currentColor" opacity="0.5">GEO ~35,786 km — stationary</text>
+    <path d="M 180 95 Q 360 40 540 95" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
+    <text x="360" y="58" text-anchor="middle" fill="currentColor" opacity="0.6">LEO ~550 km — moving at 7.5 km/s</text>
+    <rect x="330" y="108" width="60" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+    <text x="360" y="122" text-anchor="middle" fill="currentColor" opacity="0.4">Terminal</text>
+    <text x="360" y="175" text-anchor="middle" fill="currentColor" opacity="0.35" font-size="10">GEO: fixed beam pointing. LEO: continuous electronic steering required.</text>
+  </svg>
+</figure>
+
+<p>Geostationary satellites sit at 35,786 km and don't move relative to the ground — beam pointing is a one-time calibration. LEO constellations (Starlink, OneWeb, and their successors) orbit at 500–1,200 km. From a ground terminal's perspective, the satellite is continuously moving across the sky. A terminal serving a LEO constellation must use electronically steered phased arrays that can redirect the beam in microseconds.</p>
+<p>This changes the transceiver problem significantly. The IC is no longer a single-beam device — it's one element in an array of potentially hundreds, each needing its own phase-shifted LO, its own PA, its own LNA. Per-element power budget becomes extremely tight. A 256-element array at 500 mW per element is a 128 W system — impractical for a consumer terminal. Getting per-element consumption below 50–100 mW while maintaining adequate EIRP and noise figure is an active research problem.</p>
+<p>Phase shifter design is another constraint. Analog phase shifters based on varactors or switched networks add noise and nonlinearity. Digital phase shifters quantize phase to discrete steps, introducing quantization lobes in the beam pattern. At Ka-band, 4-bit phase resolution is a common compromise — but whether this is sufficient for high-order modulation in crowded LEO scenarios is still being studied <a href="#references">[2]</a>.</p>
+<h2 id="open-problems">Open problems</h2>
+<p>From an IC design perspective, these are the problems without consensus solutions:</p>
+<p><strong>LO synthesis at mm-wave with low phase noise and low power.</strong> A fractional-N PLL synthesizing 30 GHz from a 100 MHz crystal uses a divide ratio of 300. Every noise contribution from the reference and PLL loop filter gets multiplied by ~49 dB. Sub-integer spur management and Σ-Δ quantization noise in the fractional divider both become critical. Injection-locked oscillators and sub-harmonic techniques offer paths to lower power, but at the cost of reduced lock range and less frequency agility <a href="#references">[3]</a>.</p>
+<p><strong>PA efficiency at Ka-band in CMOS.</strong> Power-added efficiency for CMOS PAs at Ka-band typically sits in the 20–35% range, compared to 40–50% achievable in GaAs. For phased-array element budgets, this delta matters enormously. Outphasing, Doherty, and envelope tracking architectures all have mm-wave implementations in the literature, but none has cleanly solved the efficiency-linearity trade-off at the required power levels for high-order modulation.</p>
+<p><strong>Wideband operation for multi-orbit terminals.</strong> A terminal that can serve both GEO (narrow beam, high EIRP, tight phase noise) and LEO (wide scan, lower per-element power, fast frequency switching) has a very different specification set than one optimised for either. The LO synthesizer must cover a wide frequency range while maintaining phase noise performance across the band — a fundamentally difficult combination.</p>
+<p><strong>Doppler in LEO.</strong> A satellite at 7.5 km/s relative to the ground produces significant Doppler shift at Ka-band — on the order of several MHz — that the receiver's carrier tracking loop must acquire and follow continuously. This places requirements on loop bandwidth and VCO tuning range that interact directly with phase noise optimisation.</p>
+<hr />
+<p>My own work on low phase-noise quadrature DCOs at Ka-band <a href="#references">[4]</a> sits directly in the LO synthesis problem — specifically, using dual superharmonic injection to achieve quadrature accuracy with lower phase noise penalty than conventional approaches. The connection to SATCOM is direct: a cleaner LO means a cleaner constellation, means higher sustainable modulation order, means more bits per second through the link. That is the thread I am following toward doctoral research.</p>
+<p>If you are working on related problems — LO design, phased array integration, or CMOS mm-wave circuits — I would be glad to compare notes.</p>
+<hr />
+<h2 id="references">References</h2>
+<p>[1] Okada, K. et al., "A Ka-Band CMOS SATCOM Transceiver," <em>ISSCC 2020</em>. DOI: <a href="https://doi.org/10.1109/ISSCC19947.2020.9063018">10.1109/ISSCC19947.2020.9063018</a></p>
+<p>[2] Sadhu, B. et al., "A 28GHz 32-Element TRX Phased-Array IC With Concurrent Dual-Polarized Operation," <em>ISSCC 2017</em>. DOI: <a href="https://doi.org/10.1109/ISSCC.2017.7870404">10.1109/ISSCC.2017.7870404</a></p>
+<p>[3] Analog Devices, "Small Form Factor SATCOM Solutions," <em>Technical Article</em>, 2025.</p>
+<p>[4] Bhaskaran, D. and Tantry, S., "Design of a Low Phase Noise Quadrature DCO Using Dual Superharmonic Injection in 55nm CMOS for Ka-Band Applications," <em>APCCAS 2025</em>. DOI: <a href="https://doi.org/10.1109/APCCAS67402.2025.11376789">10.1109/APCCAS67402.2025.11376789</a></p>
+  </div>
+
+  <!-- Footer nav -->
+  <div class="mt-14 pt-6 border-t border-base-200">
+    <a href="/blog/" class="text-xs font-mono text-primary/70 hover:text-primary transition-colors">
+      ← back to all posts
+    </a>
+  </div>
+
+</article>
+
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-24 py-8 border-t border-base-200">
+    <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono text-base-content/30">
+      <span>Devesh Bhaskaran · Bengaluru, India</span>
+      <span>deveshbhaskaran@gmail.com</span>
+    </div>
+  </footer>
+
+  <!-- Theme logic -->
+  <script>
+    function updateThemeIcon(scheme) {
+      document.getElementById('icon-sun').classList.toggle('hidden', scheme !== 'dark');
+      document.getElementById('icon-moon').classList.toggle('hidden', scheme === 'dark');
+    }
+
+    function toggleTheme() {
+      var current = document.documentElement.getAttribute('data-color-scheme') || 'light';
+      var next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next === 'dark' ? 'academic-dark' : 'academic-light');
+      document.documentElement.setAttribute('data-color-scheme', next);
+      localStorage.setItem('db-theme', next);
+      updateThemeIcon(next);
+    }
+
+    (function () {
+      updateThemeIcon(document.documentElement.getAttribute('data-color-scheme') || 'light');
+    })();
+  </script>
+
+  <!-- Mobile menu -->
+  <script>
+    function toggleMobileMenu() {
+      var menu = document.getElementById('mobile-menu');
+      var iconMenu = document.getElementById('icon-menu');
+      var iconClose = document.getElementById('icon-close');
+      var open = !menu.classList.contains('hidden');
+      menu.classList.toggle('hidden', open);
+      iconMenu.classList.toggle('hidden', !open);
+      iconClose.classList.toggle('hidden', open);
+    }
+
+    document.addEventListener('click', function (e) {
+      var container = document.getElementById('mobile-menu-container');
+      if (container && !container.contains(e.target)) {
+        document.getElementById('mobile-menu').classList.add('hidden');
+        document.getElementById('icon-menu').classList.remove('hidden');
+        document.getElementById('icon-close').classList.add('hidden');
+      }
+    });
+  </script>
+
+  <!-- Cursor halo -->
+  <script>
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (window.matchMedia('(hover: none)').matches) return;
+
+      var halo = document.getElementById('cursor-halo');
+      if (!halo) return;
+      halo.style.display = 'block';
+
+      var tx = window.innerWidth / 2, ty = window.innerHeight / 2;
+      var cx = tx, cy = ty;
+      var LERP = 0.09;
+
+      document.addEventListener('mousemove', function (e) {
+        tx = e.clientX;
+        ty = e.clientY;
+      });
+
+      function tick() {
+        cx += (tx - cx) * LERP;
+        cy += (ty - cy) * LERP;
+        halo.style.setProperty('--halo-x', cx + 'px');
+        halo.style.setProperty('--halo-y', cy + 'px');
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+
+      /* Card glow */
+      document.querySelectorAll('.card-glow').forEach(function (card) {
+        card.addEventListener('mousemove', function (e) {
+          var r = card.getBoundingClientRect();
+          card.style.setProperty('--card-x', (e.clientX - r.left) + 'px');
+          card.style.setProperty('--card-y', (e.clientY - r.top) + 'px');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

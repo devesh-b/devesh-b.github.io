@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Collaborate | Devesh Bhaskaran</title>
+  <title>Layered Testbench for 4-bit Shift Register | Devesh Bhaskaran</title>
   <meta name="description" content="Digital Design Engineer at Analog Devices India — working at the boundary where digital, analog, and RF have to learn to live together.">
-  <meta property="og:title" content="Collaborate">
+  <meta property="og:title" content="Layered Testbench for 4-bit Shift Register">
   <meta property="og:description" content="Digital Design Engineer at Analog Devices India — working at the boundary where digital, analog, and RF have to learn to live together.">
   <meta property="og:type" content="website">
 
@@ -62,7 +62,7 @@
             
           
           <a href="/projects/"
-             class="px-3 py-1.5 rounded text-sm transition-colors text-base-content/60 hover:text-base-content">
+             class="px-3 py-1.5 rounded text-sm transition-colors text-primary font-medium">
             Projects
           </a>
         
@@ -89,7 +89,7 @@
             
           
           <a href="/collaborate/"
-             class="px-3 py-1.5 rounded text-sm transition-colors text-primary font-medium">
+             class="px-3 py-1.5 rounded text-sm transition-colors text-base-content/60 hover:text-base-content">
             Collaborate
           </a>
         
@@ -149,36 +149,75 @@
   <main class="pt-14">
     
 
-<div class="max-w-4xl mx-auto px-6 py-20">
+<article class="max-w-4xl mx-auto px-6 py-20">
 
-  <div class="mb-14">
-    <div class="eyebrow mb-4">Contact</div>
-    <h1 class="font-heading font-semibold text-3xl md:text-4xl tracking-tight text-base-content leading-tight">Collaborate</h1>
-    <p class="mt-3 text-sm text-base-content/55 max-w-lg leading-relaxed font-light">
-      I'm open to conversations with researchers, faculty, and engineers working on adjacent problems.
-    </p>
-  </div>
+  <!-- Header -->
+  <header class="mb-12">
+    <div class="eyebrow mb-4">Digital Design</div>
+    <h1 class="font-heading font-semibold text-3xl md:text-4xl tracking-tight leading-tight text-base-content">
+      Layered Testbench for 4-bit Shift Register
+    </h1>
+    
+    <p class="mt-3 text-base-content/55 text-base leading-relaxed font-light max-w-2xl">Structured SystemVerilog verification environment for a 4-bit shift register using a layered testbench architecture.</p>
+    
 
-  <div class="border-t border-base-200/60 pt-10">
-    <div class="prose prose-sm md:prose-base max-w-3xl text-justify
-                prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-                prose-headings:font-heading prose-headings:font-semibold prose-headings:tracking-tight
-                prose-headings:text-left
-                dark:prose-invert">
-      <p>I'm open to conversations and collaboration on:</p>
-<ul>
-<li><strong>Mixed-signal and RF circuit design</strong> — especially low-jitter timing, PLL architectures, and oscillator design</li>
-<li><strong>SoC and embedded systems</strong> — RISC-V cores, peripheral interfaces, functional safety</li>
-<li><strong>Hardware acceleration for ML</strong> — posit arithmetic, approximate computing, custom architectures for vision models</li>
-<li><strong>Functional safety and resilience</strong> — in automotive and battery-management systems</li>
-</ul>
-<p>If you're a researcher, faculty member, or industry engineer working on adjacent problems, I'd genuinely like to hear from you — whether for collaboration, advice, or just a conversation about the field.</p>
-<p>The best way to reach me is by email: <a href="mailto:deveshbhaskaran@gmail.com">deveshbhaskaran@gmail.com</a>. I'm based in Bengaluru (IST, UTC+5:30) but happy to coordinate calls across time zones.</p>
-<p><em>For grad school PIs:</em> my published work is on the <a href="/publications/">Publications</a> page and a longer overview is on the <a href="/">About</a> page. I can share a CV or research statement on request.</p>
+    <!-- Meta row -->
+    <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mt-5">
+      
+      <div class="flex flex-wrap gap-1.5">
+        
+        <span class="px-1.5 py-0.5 text-xs font-mono bg-base-200/70 text-base-content/45 rounded">SystemVerilog</span>
+        
+        <span class="px-1.5 py-0.5 text-xs font-mono bg-base-200/70 text-base-content/45 rounded">UVM-style</span>
+        
+        <span class="px-1.5 py-0.5 text-xs font-mono bg-base-200/70 text-base-content/45 rounded">Verification</span>
+        
+        <span class="px-1.5 py-0.5 text-xs font-mono bg-base-200/70 text-base-content/45 rounded">Testbench</span>
+        
+      </div>
+      
+      
+      <a href="https://github.com/devesh-b/Layered_Testbench_4_Bit_Shift_Register" target="_blank" rel="noopener"
+         class="font-mono text-xs text-primary/60 hover:text-primary transition-colors">
+        github ↗
+      </a>
+      
+      
     </div>
+  </header>
+
+  <div class="border-t border-base-200/60 mb-10"></div>
+
+  <!-- Body -->
+  
+  <div class="prose prose-sm md:prose-base max-w-3xl text-justify
+              prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+              prose-headings:font-heading prose-headings:font-semibold prose-headings:tracking-tight
+              prose-headings:text-left
+              prose-code:font-mono prose-code:text-primary
+              dark:prose-invert">
+    <h2 id="overview">Overview</h2>
+<p>A layered SystemVerilog testbench for a 4-bit shift register, structured around the separation-of-concerns principle that underpins modern UVM-based verification. The testbench decomposes stimulus generation and response checking into discrete, independently reusable layers.</p>
+<h2 id="testbench-architecture">Testbench Architecture</h2>
+<p>The five layers each own a distinct responsibility:</p>
+<p><strong>Generator</strong>: Produces randomised or directed transaction objects (shift values, load data, control sequences) without knowledge of the DUT interface.</p>
+<p><strong>Driver</strong>: Translates abstract transactions from the generator into pin-level signal toggles on the DUT interface. Handles timing relative to the clock edge.</p>
+<p><strong>Interface</strong>: A SystemVerilog <code>interface</code> block that bundles the DUT signals and provides a clean boundary between the testbench hierarchy and the RTL.</p>
+<p><strong>Monitor</strong>: Passively observes the DUT outputs and packages observed behaviour into transaction objects, mirroring the driver's abstraction level on the output side.</p>
+<p><strong>Scoreboard</strong>: Receives transactions from the monitor and compares them against a reference model prediction to flag mismatches. Maintains pass/fail metrics.</p>
+<h2 id="outcome">Outcome</h2>
+<p>The layered structure enables functional verification methodologies that identify design issues without hand-writing per-signal assertions — coverage-driven stimulus can be dropped in at the generator layer without touching the driver or scoreboard.</p>
+  </div>
+  
+
+  <!-- Footer nav -->
+  <div class="mt-14 pt-6 border-t border-base-200/60">
+    <a href="/projects/" class="text-xs font-mono text-primary/70 hover:text-primary transition-colors">
+      ← back to projects
+    </a>
   </div>
 
-</div>
+</article>
 
 
   </main>
