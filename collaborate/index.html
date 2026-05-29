@@ -245,6 +245,7 @@
       halo.style.display = 'block';
 
       var tx = window.innerWidth / 2, ty = window.innerHeight / 2;
+      var cx = tx, cy = ty;
 
       document.addEventListener('mousemove', function (e) {
         tx = e.clientX;
@@ -252,8 +253,10 @@
       });
 
       function tick() {
-        halo.style.setProperty('--halo-x', tx + 'px');
-        halo.style.setProperty('--halo-y', ty + 'px');
+        cx += (tx - cx) * 0.18;
+        cy += (ty - cy) * 0.18;
+        halo.style.setProperty('--halo-x', cx + 'px');
+        halo.style.setProperty('--halo-y', cy + 'px');
         requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
