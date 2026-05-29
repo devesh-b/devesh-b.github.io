@@ -20,7 +20,7 @@
     })();
   </script>
 
-  <link rel="stylesheet" crossorigin href="/assets/syntax-BD9cdhWO.css">
+  <link rel="stylesheet" crossorigin href="/assets/syntax-Ct-jFuui.css">
 </head>
 <body class="min-h-screen bg-base-100 text-base-content antialiased">
 
@@ -291,7 +291,7 @@
 
       var tx = window.innerWidth / 2, ty = window.innerHeight / 2;
       var cx = tx, cy = ty;
-      var LERP = 0.09;
+      var LERP = 0.05;
 
       document.addEventListener('mousemove', function (e) {
         tx = e.clientX;
@@ -342,9 +342,9 @@
 
       var tx = window.innerWidth / 2, ty = window.innerHeight / 2;
       var cx = tx, cy = ty;
-      var LERP   = 0.07;
-      var TRAIL  = 22;
-      var trail  = [];
+      var LERP     = 0.07;
+      var LINGER   = 900;   /* trail dot lifetime ms */
+      var trail    = [];    /* [{x, y, t}] newest first */
 
       document.addEventListener('mousemove', function (e) { tx = e.clientX; ty = e.clientY; });
 
@@ -354,59 +354,64 @@
       }
 
       function drawChip(x, y, r) {
-        var B  = 14;  /* body px          */
+        var B  = 14;
         var H  = B / 2;
-        var PW = 3;   /* pin width        */
-        var PD = 4;   /* pin depth        */
+        var PW = 3;
+        var PD = 4;
         var c  = 'rgb(' + r[0] + ',' + r[1] + ',' + r[2] + ')';
 
-        /* body */
         ctx.fillStyle = c;
         ctx.fillRect(x - H, y - H, B, B);
 
-        /* 3 pins top & bottom */
         var px = [x - 5, x - 1, x + 3];
         for (var i = 0; i < 3; i++) {
           ctx.fillRect(px[i], y - H - PD, PW, PD);
           ctx.fillRect(px[i], y + H,      PW, PD);
         }
 
-        /* 2 pins left & right */
         var py = [y - 4, y + 1];
         for (var j = 0; j < 2; j++) {
           ctx.fillRect(x - H - PD, py[j], PD, PW);
           ctx.fillRect(x + H,      py[j], PD, PW);
         }
 
-        /* pin-1 dot (top-left corner) */
         ctx.beginPath();
         ctx.arc(x - H + 2.5, y - H + 2.5, 1.5, 0, Math.PI * 2);
         ctx.fillStyle = 'rgba(' + r[0] + ',' + r[1] + ',' + r[2] + ',0.35)';
         ctx.fill();
 
-        /* inner die cross */
         ctx.fillStyle = 'rgba(255,255,255,0.18)';
         ctx.fillRect(x - 1, y - 4, 2, 8);
         ctx.fillRect(x - 4, y - 1, 8, 2);
       }
 
       function tick() {
+        var now = performance.now();
         cx += (tx - cx) * LERP;
         cy += (ty - cy) * LERP;
 
-        trail.unshift({ x: cx, y: cy });
-        if (trail.length > TRAIL) trail.pop();
+        /* record position with timestamp, every ~2 frames to avoid overdensity */
+        var last = trail[0];
+        var dx = last ? cx - last.x : 99;
+        var dy = last ? cy - last.y : 99;
+        if (!last || dx * dx + dy * dy > 4) {
+          trail.unshift({ x: cx, y: cy, t: now });
+        }
+
+        /* expire old dots */
+        while (trail.length && now - trail[trail.length - 1].t > LINGER) trail.pop();
 
         ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
         var r   = rgb();
         var col = 'rgb(' + r[0] + ',' + r[1] + ',' + r[2] + ')';
 
-        /* trail — pixel squares fading & shrinking */
+        /* draw trail oldest → newest so newer dots paint on top */
         for (var i = trail.length - 1; i > 0; i--) {
-          var t    = 1 - i / TRAIL;
-          var size = Math.max(1, Math.round(t * 3));
-          ctx.globalAlpha = t * 0.45;
+          var age   = (now - trail[i].t) / LINGER;   /* 0=fresh 1=expired */
+          var alpha = (1 - age) * 0.5;
+          var size  = Math.max(1, Math.round((1 - age) * 3));
+          ctx.globalAlpha = alpha;
           ctx.fillStyle   = col;
           ctx.fillRect(
             Math.round(trail[i].x) - Math.floor(size / 2),
