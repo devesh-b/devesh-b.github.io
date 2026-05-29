@@ -309,5 +309,112 @@
       });
     })();
   </script>
+
+  <!-- Pixel chip cursor follower -->
+  <script>
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (window.matchMedia('(hover: none)').matches) return;
+
+      var dpr = window.devicePixelRatio || 1;
+      var canvas = document.createElement('canvas');
+      canvas.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9999;';
+      document.body.appendChild(canvas);
+      var ctx = canvas.getContext('2d');
+
+      function resize() {
+        canvas.width  = window.innerWidth  * dpr;
+        canvas.height = window.innerHeight * dpr;
+        canvas.style.width  = window.innerWidth  + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      var tx = window.innerWidth / 2, ty = window.innerHeight / 2;
+      var cx = tx, cy = ty;
+      var LERP   = 0.07;
+      var TRAIL  = 22;
+      var trail  = [];
+
+      document.addEventListener('mousemove', function (e) { tx = e.clientX; ty = e.clientY; });
+
+      function rgb() {
+        return document.documentElement.getAttribute('data-theme') === 'academic-dark'
+          ? [123, 143, 196] : [59, 74, 107];
+      }
+
+      function drawChip(x, y, r) {
+        var B  = 14;  /* body px          */
+        var H  = B / 2;
+        var PW = 3;   /* pin width        */
+        var PD = 4;   /* pin depth        */
+        var c  = 'rgb(' + r[0] + ',' + r[1] + ',' + r[2] + ')';
+
+        /* body */
+        ctx.fillStyle = c;
+        ctx.fillRect(x - H, y - H, B, B);
+
+        /* 3 pins top & bottom */
+        var px = [x - 5, x - 1, x + 3];
+        for (var i = 0; i < 3; i++) {
+          ctx.fillRect(px[i], y - H - PD, PW, PD);
+          ctx.fillRect(px[i], y + H,      PW, PD);
+        }
+
+        /* 2 pins left & right */
+        var py = [y - 4, y + 1];
+        for (var j = 0; j < 2; j++) {
+          ctx.fillRect(x - H - PD, py[j], PD, PW);
+          ctx.fillRect(x + H,      py[j], PD, PW);
+        }
+
+        /* pin-1 dot (top-left corner) */
+        ctx.beginPath();
+        ctx.arc(x - H + 2.5, y - H + 2.5, 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + r[0] + ',' + r[1] + ',' + r[2] + ',0.35)';
+        ctx.fill();
+
+        /* inner die cross */
+        ctx.fillStyle = 'rgba(255,255,255,0.18)';
+        ctx.fillRect(x - 1, y - 4, 2, 8);
+        ctx.fillRect(x - 4, y - 1, 8, 2);
+      }
+
+      function tick() {
+        cx += (tx - cx) * LERP;
+        cy += (ty - cy) * LERP;
+
+        trail.unshift({ x: cx, y: cy });
+        if (trail.length > TRAIL) trail.pop();
+
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+        var r   = rgb();
+        var col = 'rgb(' + r[0] + ',' + r[1] + ',' + r[2] + ')';
+
+        /* trail — pixel squares fading & shrinking */
+        for (var i = trail.length - 1; i > 0; i--) {
+          var t    = 1 - i / TRAIL;
+          var size = Math.max(1, Math.round(t * 3));
+          ctx.globalAlpha = t * 0.45;
+          ctx.fillStyle   = col;
+          ctx.fillRect(
+            Math.round(trail[i].x) - Math.floor(size / 2),
+            Math.round(trail[i].y) - Math.floor(size / 2),
+            size, size
+          );
+        }
+
+        ctx.globalAlpha = 1;
+        drawChip(Math.round(cx), Math.round(cy), r);
+
+        requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+    })();
+  </script>
 </body>
 </html>
