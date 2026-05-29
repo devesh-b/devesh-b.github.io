@@ -318,7 +318,7 @@
     })();
   </script>
 
-  <!-- Pixel chip cursor follower -->
+  <!-- IC chip cursor follower with wire trail -->
   <script>
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -342,9 +342,9 @@
 
       var tx = window.innerWidth / 2, ty = window.innerHeight / 2;
       var cx = tx, cy = ty;
-      var LERP     = 0.07;
-      var LINGER   = 900;   /* trail dot lifetime ms */
-      var trail    = [];    /* [{x, y, t}] newest first */
+      var LERP   = 0.07;
+      var LINGER = 1100;  /* wire lifetime ms */
+      var trail  = [];    /* [{x, y, t}] newest first */
 
       document.addEventListener('mousemove', function (e) { tx = e.clientX; ty = e.clientY; });
 
@@ -354,35 +354,56 @@
       }
 
       function drawChip(x, y, r) {
-        var B  = 14;
+        var B  = 18;   /* body size px */
         var H  = B / 2;
-        var PW = 3;
-        var PD = 4;
+        var PW = 2;    /* pin width */
+        var PL = 5;    /* pin length */
         var c  = 'rgb(' + r[0] + ',' + r[1] + ',' + r[2] + ')';
 
+        /* body */
         ctx.fillStyle = c;
-        ctx.fillRect(x - H, y - H, B, B);
-
-        var px = [x - 5, x - 1, x + 3];
-        for (var i = 0; i < 3; i++) {
-          ctx.fillRect(px[i], y - H - PD, PW, PD);
-          ctx.fillRect(px[i], y + H,      PW, PD);
-        }
-
-        var py = [y - 4, y + 1];
-        for (var j = 0; j < 2; j++) {
-          ctx.fillRect(x - H - PD, py[j], PD, PW);
-          ctx.fillRect(x + H,      py[j], PD, PW);
-        }
-
         ctx.beginPath();
-        ctx.arc(x - H + 2.5, y - H + 2.5, 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(' + r[0] + ',' + r[1] + ',' + r[2] + ',0.35)';
+        if (ctx.roundRect) {
+          ctx.roundRect(x - H, y - H, B, B, 2);
+        } else {
+          ctx.rect(x - H, y - H, B, B);
+        }
         ctx.fill();
 
-        ctx.fillStyle = 'rgba(255,255,255,0.18)';
-        ctx.fillRect(x - 1, y - 4, 2, 8);
-        ctx.fillRect(x - 4, y - 1, 8, 2);
+        /* 4 pins top + bottom */
+        ctx.fillStyle = c;
+        var px = [-6, -2, 2, 6];
+        for (var i = 0; i < px.length; i++) {
+          ctx.fillRect(x + px[i] - 1, y - H - PL, PW, PL);
+          ctx.fillRect(x + px[i] - 1, y + H,      PW, PL);
+        }
+
+        /* 3 pins left + right */
+        var py = [-4, 0, 4];
+        for (var j = 0; j < py.length; j++) {
+          ctx.fillRect(x - H - PL, y + py[j] - 1, PL, PW);
+          ctx.fillRect(x + H,      y + py[j] - 1, PL, PW);
+        }
+
+        /* pin-1 indent (top-left corner) */
+        ctx.fillStyle = 'rgba(0,0,0,0.28)';
+        ctx.beginPath();
+        ctx.arc(x - H + 3, y - H + 3, 1.8, 0, Math.PI * 2);
+        ctx.fill();
+
+        /* inner trace cross */
+        ctx.strokeStyle = 'rgba(255,255,255,0.22)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(x - 5, y); ctx.lineTo(x + 5, y);
+        ctx.moveTo(x, y - 5); ctx.lineTo(x, y + 5);
+        ctx.stroke();
+
+        /* center pad */
+        ctx.fillStyle = 'rgba(255,255,255,0.28)';
+        ctx.beginPath();
+        ctx.arc(x, y, 2, 0, Math.PI * 2);
+        ctx.fill();
       }
 
       function tick() {
@@ -390,15 +411,13 @@
         cx += (tx - cx) * LERP;
         cy += (ty - cy) * LERP;
 
-        /* record position with timestamp, every ~2 frames to avoid overdensity */
         var last = trail[0];
         var dx = last ? cx - last.x : 99;
         var dy = last ? cy - last.y : 99;
         if (!last || dx * dx + dy * dy > 4) {
           trail.unshift({ x: cx, y: cy, t: now });
+          if (trail.length > 500) trail.length = 500;
         }
-
-        /* expire old dots */
         while (trail.length && now - trail[trail.length - 1].t > LINGER) trail.pop();
 
         ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
@@ -406,18 +425,20 @@
         var r   = rgb();
         var col = 'rgb(' + r[0] + ',' + r[1] + ',' + r[2] + ')';
 
-        /* draw trail oldest → newest so newer dots paint on top */
+        /* wire trail: each segment tapers in width and fades in opacity */
+        ctx.lineCap  = 'round';
+        ctx.lineJoin = 'round';
+        ctx.strokeStyle = col;
+
         for (var i = trail.length - 1; i > 0; i--) {
-          var age   = (now - trail[i].t) / LINGER;   /* 0=fresh 1=expired */
-          var alpha = (1 - age) * 0.5;
-          var size  = Math.max(1, Math.round((1 - age) * 3));
-          ctx.globalAlpha = alpha;
-          ctx.fillStyle   = col;
-          ctx.fillRect(
-            Math.round(trail[i].x) - Math.floor(size / 2),
-            Math.round(trail[i].y) - Math.floor(size / 2),
-            size, size
-          );
+          var age = (now - trail[i].t) / LINGER;  /* 0=fresh 1=expired */
+          var a   = 1 - age;
+          ctx.globalAlpha = a * 0.72;
+          ctx.lineWidth   = Math.max(0.3, a * 1.8);
+          ctx.beginPath();
+          ctx.moveTo(trail[i].x, trail[i].y);
+          ctx.lineTo(trail[i - 1].x, trail[i - 1].y);
+          ctx.stroke();
         }
 
         ctx.globalAlpha = 1;
