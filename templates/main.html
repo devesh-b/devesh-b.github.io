@@ -25,6 +25,17 @@
           Open to PhD programs · 2027
         </div>
 
+        <!-- Stats strip -->
+        {% if page.stats %}
+        <div class="mt-3 flex items-center gap-4 text-xs font-mono text-base-content/35">
+          <span>{{ page.stats.publications }} publications</span>
+          <span aria-hidden>·</span>
+          <span>{{ page.stats.projects }} projects</span>
+          <span aria-hidden>·</span>
+          <span>{{ page.stats.roles }}</span>
+        </div>
+        {% endif %}
+
         <!-- Social links -->
         <div class="flex items-center gap-3 mt-5">
           {% for link in page.social_links %}
@@ -142,6 +153,28 @@
       </div>
     </div>
   </section>
+
+  <!-- ── Skills & Tools ──────────────────────────────────────── -->
+  {% if page.skills %}
+  <section class="pb-4">
+    <div class="section-panel">
+      <div class="eyebrow eyebrow-accent eyebrow-accent-amber mb-5">Skills &amp; Tools</div>
+      <div class="space-y-4">
+        {% for group in page.skills %}
+        <div>
+          <div class="text-xs font-mono text-base-content/45 mb-2 uppercase tracking-wider">{{ group.category }}</div>
+          <div class="flex flex-wrap gap-2">
+            {% for tool in group.tools %}
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono border
+                         bg-{{ group.color }}/8 text-{{ group.color }} border-{{ group.color }}/25">{{ tool }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
 
   <!-- ── Journey (timeline) ────────────────────────────────────── -->
   {% if page.news %}

@@ -33,6 +33,20 @@ featured_pubs:
     abbr: "NKCon"
     doi: "10.1109/NKCon66957.2025.11345792"
     coauthors: "Devesh Bhaskaran et al."
+skills:
+  - category: EDA & Simulation
+    color: accent
+    tools: ["Cadence Virtuoso", "Spectre RF", "Synopsys DC", "Genus", "Innovus", "Magic VLSI"]
+  - category: HDL & Verification
+    color: primary
+    tools: ["SystemVerilog", "Verilog", "VHDL", "UVM", "SVA"]
+  - category: Programming & Tools
+    color: teal
+    tools: ["Python", "MATLAB", "C", "Git", "Docker", "Linux"]
+stats:
+  publications: 2
+  projects: 12
+  roles: "ADI · PESU"
 ---
 
 I'm a Digital Design Engineer at [Analog Devices India](https://www.analog.com/), working on PHYs, PLLs, and timing systems for the next generation of battery-management ICs in electric vehicles. The work spans 10BASE-T1S PHY design, PLLs, GPT, UART, and PWM architectures, with a focus on functional safety and system-level timing analysis.
