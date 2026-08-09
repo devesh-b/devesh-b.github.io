@@ -71,6 +71,7 @@ categories:
       - title: "YOLOv8 Hardware Accelerator"
         description: "Investigating algorithmic compression and posit-based approximate computing for hardware acceleration of YOLOv8 inference."
         tags: [Python, Posit, Approximate Computing, FPGA]
+        slug: "yolov8-accelerator"
         status: "In Progress"
 
       - title: "ATM Management System"
