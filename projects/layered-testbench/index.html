@@ -63,7 +63,7 @@
 }
 </script>
 
-  <link rel="stylesheet" crossorigin href="/assets/syntax-Bp4cV6m-.css">
+  <link rel="stylesheet" crossorigin href="/assets/syntax-nx1or3h2.css">
 </head>
 <body class="min-h-screen bg-base-100 text-base-content antialiased">
 
@@ -383,6 +383,24 @@
           '<div class="eyebrow eyebrow-accent" style="margin-bottom:0.6rem">Contents</div>' +
           '<ol style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0.2rem">' + items + '</ol>' +
         '</div>';
+
+      // Scroll-spy: highlight TOC link matching current section
+      var tocLinks = mount.querySelectorAll('.toc-link');
+      var headingArr = Array.from(headings);
+
+      function updateActiveToc() {
+        var scrollY = window.scrollY + 72; // 56px navbar + 16px buffer
+        var current = null;
+        headingArr.forEach(function(h) {
+          if (h.getBoundingClientRect().top + window.scrollY <= scrollY) current = h.id;
+        });
+        tocLinks.forEach(function(a) {
+          a.classList.toggle('toc-link-active', a.getAttribute('href') === '#' + current);
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveToc, { passive: true });
+      updateActiveToc();
     })();
   </script>
 
