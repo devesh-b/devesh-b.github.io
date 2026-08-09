@@ -97,6 +97,40 @@
   {% endif %}
   {% endif %}
 
+  <!-- Prev / Next navigation -->
+  {% if posts %}
+  {% set nav_ns = namespace(older=None, newer=None, found=False) %}
+  {% for post in posts %}
+    {% if post.url == page.url %}
+      {% set nav_ns.found = True %}
+    {% elif not nav_ns.found %}
+      {% set nav_ns.newer = post %}
+    {% elif nav_ns.found and nav_ns.older is none %}
+      {% set nav_ns.older = post %}
+    {% endif %}
+  {% endfor %}
+  {% if nav_ns.older or nav_ns.newer %}
+  <div class="mt-12 grid grid-cols-2 gap-3">
+    {% if nav_ns.older %}
+    <a href="{{ nav_ns.older.url }}/"
+       class="group flex flex-col gap-1.5 p-4 rounded-xl border border-base-300 hover:border-primary/30 hover:bg-base-200/40 transition-all">
+      <span class="text-xs font-mono text-base-content/40">← Older</span>
+      <span class="text-sm font-medium text-base-content group-hover:text-primary transition-colors leading-snug line-clamp-2">{{ nav_ns.older.title }}</span>
+    </a>
+    {% else %}
+    <div></div>
+    {% endif %}
+    {% if nav_ns.newer %}
+    <a href="{{ nav_ns.newer.url }}/"
+       class="group flex flex-col gap-1.5 p-4 rounded-xl border border-base-300 hover:border-primary/30 hover:bg-base-200/40 transition-all text-right col-start-2">
+      <span class="text-xs font-mono text-base-content/40">Newer →</span>
+      <span class="text-sm font-medium text-base-content group-hover:text-primary transition-colors leading-snug line-clamp-2">{{ nav_ns.newer.title }}</span>
+    </a>
+    {% endif %}
+  </div>
+  {% endif %}
+  {% endif %}
+
   <!-- Footer nav + share -->
   <div class="mt-14 pt-6 border-t border-base-300 flex flex-wrap items-center justify-between gap-4">
     <a href="/blog/" class="text-xs font-mono text-primary/85 hover:text-primary transition-colors">
