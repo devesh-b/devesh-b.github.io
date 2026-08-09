@@ -567,7 +567,8 @@ html {
   display: block;
   padding: 0.1rem 0;
 }
-.toc-link:hover {
+.toc-link:hover,
+.toc-link-active {
   opacity: 1;
   color: var(--color-primary);
 }

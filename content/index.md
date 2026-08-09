@@ -5,7 +5,7 @@ subtitle: "Working at the boundary where digital, analog, and RF have to learn t
 position: Digital Design Engineer
 company: Analog Devices India
 location: Bengaluru, Karnataka
-profile_image: /assets/img/prof_pic.jpg
+profile_image: /assets/img/prof_pic.webp
 social_links:
   - {name: Email, url: "mailto:deveshbhaskaran@gmail.com", icon: email}
   - {name: GitHub, url: "https://github.com/devesh-b", icon: github}
