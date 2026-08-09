@@ -8,6 +8,13 @@
   <meta property="og:title" content="Teaching">
   <meta property="og:description" content="Digital Design Engineer at Analog Devices India — working at the boundary where digital, analog, and RF have to learn to live together.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://devesh-b.github.io/teaching">
+  <meta property="og:image" content="https://devesh-b.github.io/assets/img/prof_pic.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Teaching">
+  <meta name="twitter:description" content="Digital Design Engineer at Analog Devices India — working at the boundary where digital, analog, and RF have to learn to live together.">
+  <meta name="twitter:image" content="https://devesh-b.github.io/assets/img/prof_pic.jpg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%233B4A6B'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-size='18' font-family='Georgia%2Cserif' fill='white' font-weight='600'%3ED%3C/text%3E%3C/svg%3E">
 
   <!-- Anti-FOUC: set theme before paint -->
   <script>
@@ -20,10 +27,12 @@
     })();
   </script>
 
-  <link rel="stylesheet" crossorigin href="/assets/syntax-BdA_IL2U.css">
+  <link rel="stylesheet" crossorigin href="/assets/syntax-BLQJDPR-.css">
 </head>
 <body class="min-h-screen bg-base-100 text-base-content antialiased">
 
+  <!-- Scroll progress bar -->
+  <div id="scroll-progress" aria-hidden="true"></div>
   <!-- Cursor halo layer -->
   <div id="cursor-halo" aria-hidden="true"></div>
   <!-- Grain texture -->
@@ -219,6 +228,9 @@
 
   </main>
 
+  <!-- Back to top -->
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
   <!-- Footer -->
   <footer class="mt-24 border-t border-base-300">
     <div class="max-w-4xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
@@ -254,12 +266,16 @@
     }
 
     function toggleTheme() {
+      document.documentElement.classList.add('color-transition');
       var current = document.documentElement.getAttribute('data-color-scheme') || 'light';
       var next = current === 'light' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', next === 'dark' ? 'academic-dark' : 'academic-light');
       document.documentElement.setAttribute('data-color-scheme', next);
       localStorage.setItem('db-theme', next);
       updateThemeIcon(next);
+      window.setTimeout(function () {
+        document.documentElement.classList.remove('color-transition');
+      }, 350);
     }
 
     (function () {
@@ -287,6 +303,25 @@
         document.getElementById('icon-close').classList.add('hidden');
       }
     });
+  </script>
+
+  <!-- Scroll progress + back to top -->
+  <script>
+    (function () {
+      var prog = document.getElementById('scroll-progress');
+      var btt  = document.getElementById('back-to-top');
+      if (!prog && !btt) return;
+      function onScroll() {
+        var scrolled = document.documentElement.scrollTop;
+        var total    = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        if (prog) {
+          prog.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
+          prog.classList.toggle('active', scrolled > 60);
+        }
+        if (btt) btt.classList.toggle('visible', scrolled > window.innerHeight * 0.4);
+      }
+      document.addEventListener('scroll', onScroll, { passive: true });
+    })();
   </script>
 
   <!-- Cursor halo -->

@@ -8,6 +8,13 @@
   <meta property="og:title" content="Ground State">
   <meta property="og:description" content="Digital Design Engineer at Analog Devices India — working at the boundary where digital, analog, and RF have to learn to live together.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://devesh-b.github.io/blog">
+  <meta property="og:image" content="https://devesh-b.github.io/assets/img/prof_pic.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Ground State">
+  <meta name="twitter:description" content="Digital Design Engineer at Analog Devices India — working at the boundary where digital, analog, and RF have to learn to live together.">
+  <meta name="twitter:image" content="https://devesh-b.github.io/assets/img/prof_pic.jpg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%233B4A6B'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-size='18' font-family='Georgia%2Cserif' fill='white' font-weight='600'%3ED%3C/text%3E%3C/svg%3E">
 
   <!-- Anti-FOUC: set theme before paint -->
   <script>
@@ -20,10 +27,12 @@
     })();
   </script>
 
-  <link rel="stylesheet" crossorigin href="/assets/syntax-BdA_IL2U.css">
+  <link rel="stylesheet" crossorigin href="/assets/syntax-BLQJDPR-.css">
 </head>
 <body class="min-h-screen bg-base-100 text-base-content antialiased">
 
+  <!-- Scroll progress bar -->
+  <div id="scroll-progress" aria-hidden="true"></div>
   <!-- Cursor halo layer -->
   <div id="cursor-halo" aria-hidden="true"></div>
   <!-- Grain texture -->
@@ -153,7 +162,7 @@
 
 <div class="max-w-4xl mx-auto px-6 py-20">
 
-  <div class="mb-14">
+  <div class="mb-10">
     <div class="eyebrow mb-4">Writing</div>
     <h1 class="font-heading font-semibold text-3xl md:text-4xl tracking-tight text-base-content leading-tight">
       Ground State
@@ -165,40 +174,70 @@
     
   </div>
 
-  <div class="border-t border-base-300 pt-2">
-    
-    <a href="/posts/2025-05-01-satcom-transceivers/"
-       class="group flex items-baseline gap-6 py-5 border-b border-base-300/60 hover:pl-1 hover:bg-base-200/30 transition-all duration-200">
-      <span class="font-mono text-xs text-base-content/50 flex-shrink-0 w-24 tabular-nums">2025-05-01</span>
-      <div class="min-w-0">
-        <h2 class="font-heading font-medium text-base text-base-content group-hover:text-primary transition-colors leading-snug">
-          SATCOM transceivers — how they work and where the hard problems are
-        </h2>
+  
+
+  
+  
+
+  <!-- Featured (latest) post -->
+  <div class="section-panel card-elevated mb-8 group cursor-pointer" onclick="location.href='/posts/2025-05-01-satcom-transceivers/'">
+    <div class="eyebrow eyebrow-accent eyebrow-accent-forest mb-4">Latest</div>
+    <a href="/posts/2025-05-01-satcom-transceivers/" class="block">
+      <h2 class="font-heading font-semibold text-xl md:text-2xl text-base-content group-hover:text-primary transition-colors leading-snug mb-2">
+        SATCOM transceivers — how they work and where the hard problems are
+      </h2>
+      
+      <p class="text-sm text-base-content/65 leading-relaxed max-w-2xl">A technical overview of satellite communication transceiver architecture, with a focus on Ka-band systems and the open IC design problems that still don't have clean answers.</p>
+      
+      <div class="mt-4 flex flex-wrap items-center gap-3">
+        <span class="font-mono text-xs text-base-content/45">2025-05-01</span>
         
-        <p class="mt-1 text-sm text-base-content/65 leading-relaxed line-clamp-1">A technical overview of satellite communication transceiver architecture, with a focus on Ka-band systems and the open IC design problems that still don't have clean answers.</p>
+        
+        <span class="px-1.5 py-0.5 text-xs font-mono bg-forest/10 text-forest rounded border border-forest/20">RF</span>
+        
+        <span class="px-1.5 py-0.5 text-xs font-mono bg-forest/10 text-forest rounded border border-forest/20">SATCOM</span>
+        
+        <span class="px-1.5 py-0.5 text-xs font-mono bg-forest/10 text-forest rounded border border-forest/20">circuits</span>
+        
+        <span class="px-1.5 py-0.5 text-xs font-mono bg-forest/10 text-forest rounded border border-forest/20">research</span>
         
         
-        <div class="flex flex-wrap gap-1.5 mt-2">
-          
-          <span class="px-1.5 py-0.5 text-xs font-mono bg-primary/10 text-primary rounded">RF</span>
-          
-          <span class="px-1.5 py-0.5 text-xs font-mono bg-primary/10 text-primary rounded">SATCOM</span>
-          
-          <span class="px-1.5 py-0.5 text-xs font-mono bg-primary/10 text-primary rounded">circuits</span>
-          
-          <span class="px-1.5 py-0.5 text-xs font-mono bg-primary/10 text-primary rounded">research</span>
-          
-        </div>
-        
+        <span class="ml-auto text-xs font-mono text-primary/70 group-hover:text-primary transition-colors">read →</span>
       </div>
     </a>
-    
   </div>
+
+  <!-- Collect all unique tags from remaining posts -->
+  
+  
+
+  <!-- Tag filter pills (only shown if there are multiple posts) -->
+  
+
+  <!-- Remaining posts -->
+  
+
+  
 
 </div>
 
+<script>
+  function filterPosts(tag, btn) {
+    document.querySelectorAll('.tag-pill').forEach(function(p) { p.classList.remove('active'); });
+    if (btn) btn.classList.add('active');
+    document.querySelectorAll('.post-row').forEach(function(el) {
+      if (!tag) { el.style.display = ''; return; }
+      var tags = el.dataset.postTags ? el.dataset.postTags.split(',') : [];
+      el.style.display = tags.indexOf(tag) !== -1 ? '' : 'none';
+    });
+  }
+</script>
+
 
   </main>
+
+  <!-- Back to top -->
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
   <!-- Footer -->
   <footer class="mt-24 border-t border-base-300">
@@ -235,12 +274,16 @@
     }
 
     function toggleTheme() {
+      document.documentElement.classList.add('color-transition');
       var current = document.documentElement.getAttribute('data-color-scheme') || 'light';
       var next = current === 'light' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', next === 'dark' ? 'academic-dark' : 'academic-light');
       document.documentElement.setAttribute('data-color-scheme', next);
       localStorage.setItem('db-theme', next);
       updateThemeIcon(next);
+      window.setTimeout(function () {
+        document.documentElement.classList.remove('color-transition');
+      }, 350);
     }
 
     (function () {
@@ -268,6 +311,25 @@
         document.getElementById('icon-close').classList.add('hidden');
       }
     });
+  </script>
+
+  <!-- Scroll progress + back to top -->
+  <script>
+    (function () {
+      var prog = document.getElementById('scroll-progress');
+      var btt  = document.getElementById('back-to-top');
+      if (!prog && !btt) return;
+      function onScroll() {
+        var scrolled = document.documentElement.scrollTop;
+        var total    = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        if (prog) {
+          prog.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
+          prog.classList.toggle('active', scrolled > 60);
+        }
+        if (btt) btt.classList.toggle('visible', scrolled > window.innerHeight * 0.4);
+      }
+      document.addEventListener('scroll', onScroll, { passive: true });
+    })();
   </script>
 
   <!-- Cursor halo -->
