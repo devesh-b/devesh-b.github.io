@@ -24,6 +24,11 @@ categories:
         tags: [ADC, Wallace Tree, Cadence Virtuoso]
         slug: "flash-adc"
 
+      - title: "Tiny Tapeout — Chipalooza"
+        description: "Two custom ICs submitted to Efabless open shuttles: an 8-bit MAC unit using Vedic multipliers and reversible gates, and a universal active filter. Received the $300 Tiny Tapeout Award (2024)."
+        tags: [OpenLane, GDS, Efabless, Verilog, Analog, Tiny Tapeout]
+        slug: "tiny-tapeout"
+
   - name: "Digital Design"
     entries:
       - title: "Embedded SoC Design (RV32IM)"

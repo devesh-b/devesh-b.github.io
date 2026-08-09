@@ -6,35 +6,35 @@
   <div class="mb-14">
     <div class="eyebrow mb-4">Research</div>
     <h1 class="font-heading font-semibold text-3xl md:text-4xl tracking-tight text-base-content leading-tight">Publications</h1>
-    <p class="mt-3 text-sm text-base-content/55 max-w-lg leading-relaxed font-light">
+    <p class="mt-3 text-sm text-base-content/70 max-w-lg leading-relaxed font-light">
       Peer-reviewed conference papers. DOI links go to the IEEE Xplore records.
     </p>
   </div>
 
-  <div class="border-t border-base-200/60 pt-2">
+  <div class="border-t border-base-300 pt-2">
     {% for pub in page.publications %}
-    <div class="group py-6 border-b border-base-200/40">
+    <div class="group py-6 border-b border-base-300/60 hover:bg-base-200/30 transition-colors px-2 -mx-2 rounded">
       <div class="flex items-start gap-5">
-        <span class="pub-abbr text-primary/50 mt-0.5 flex-shrink-0 w-14 pt-px">{{ pub.abbr }}</span>
+        <span class="pub-abbr text-primary/75 mt-0.5 flex-shrink-0 w-14 pt-px">{{ pub.abbr }}</span>
         <div class="min-w-0 flex-1">
           <h2 class="font-heading font-medium text-sm md:text-base text-base-content leading-snug">
             {{ pub.title }}
           </h2>
-          <p class="mt-1.5 text-xs font-mono text-base-content/35 leading-relaxed">
+          <p class="mt-1.5 text-xs font-mono text-base-content/55 leading-relaxed">
             {{ pub.authors }}
           </p>
           <div class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
-            <span class="font-mono text-base-content/35">{{ pub.venue }} · {{ pub.year }}</span>
+            <span class="font-mono text-base-content/55">{{ pub.venue }} · {{ pub.year }}</span>
             {% if pub.doi %}
             <a href="https://doi.org/{{ pub.doi }}"
                target="_blank" rel="noopener"
-               class="font-mono text-primary/50 hover:text-primary transition-colors">
+               class="font-mono text-primary/75 hover:text-primary transition-colors">
               doi ↗
             </a>
             {% endif %}
           </div>
           {% if pub.abstract %}
-          <p class="mt-3 text-xs text-base-content/45 leading-relaxed max-w-2xl">{{ pub.abstract }}</p>
+          <p class="mt-3 text-xs text-base-content/65 leading-relaxed max-w-2xl">{{ pub.abstract }}</p>
           {% endif %}
         </div>
       </div>
@@ -43,7 +43,7 @@
   </div>
 
   {% if content %}
-  <div class="mt-10 pt-8 border-t border-base-200 prose prose-sm max-w-none text-base-content/60 dark:prose-invert">
+  <div class="mt-10 pt-8 border-t border-base-300 prose prose-sm max-w-none text-base-content/75 dark:prose-invert">
     {{ content }}
   </div>
   {% endif %}

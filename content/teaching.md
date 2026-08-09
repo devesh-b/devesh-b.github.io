@@ -6,7 +6,7 @@ roles:
     institution: "PES University"
     period: "Jan 2025 – Mar 2025"
     type: "Teaching Assistant"
-    description: "Designed and delivered an advanced module on oscillator circuit design, developing Spectre RF simulation workflows for analysing noise, phase noise, and gain in RF oscillator topologies. Conducted structured Q&A and mentoring sessions to support student projects."
+    description: "Designed and delivered an advanced module on oscillator circuit design, developing Spectre RF simulation workflows for analysing noise, phase noise, and gain in RF oscillator topologies. Conducted structured Q&amp;A and mentoring sessions to support student projects."
 
   - course: "Computer Organization and Design"
     institution: "PES University"

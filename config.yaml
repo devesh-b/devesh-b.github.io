@@ -12,8 +12,8 @@ theme:
     academic-light: |
       color-scheme: light;
       --color-base-100: #EDE4D8;
-      --color-base-200: #E2D8CA;
-      --color-base-300: #D3C8B8;
+      --color-base-200: #DDD2C3;
+      --color-base-300: #B8A896;
       --color-base-content: #1A1A1A;
       --color-primary: #3B4A6B;
       --color-primary-content: #FFFFFF;

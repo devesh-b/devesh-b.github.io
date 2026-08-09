@@ -12,10 +12,10 @@
         <h1 class="font-heading font-semibold text-3xl md:text-5xl tracking-tight text-base-content leading-tight">
           {{ page.title }}
         </h1>
-        <p class="mt-4 text-base-content/60 text-base leading-relaxed max-w-md font-light">
+        <p class="mt-4 text-base-content/75 text-base leading-relaxed max-w-md font-light">
           {{ page.subtitle }}
         </p>
-        <div class="mt-3 font-mono text-xs text-base-content/35 tracking-wide">
+        <div class="mt-3 font-mono text-xs text-base-content/55 tracking-wide">
           {{ page.position }} · {{ page.company }} · {{ page.location }}
         </div>
 
@@ -25,7 +25,7 @@
           <a href="{{ link.url }}"
              {% if 'mailto' not in link.url %}target="_blank" rel="noopener noreferrer"{% endif %}
              title="{{ link.name }}"
-             class="text-base-content/40 hover:text-primary transition-colors">
+             class="text-base-content/60 hover:text-primary transition-colors">
             {% include 'icons/' + link.icon + '.html' %}
           </a>
           {% endfor %}
@@ -35,7 +35,7 @@
       <!-- Profile photo -->
       {% if page.profile_image %}
       <div class="flex-shrink-0">
-        <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden ring-1 ring-base-200/80">
+        <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden ring-2 ring-base-300">
           <img src="{{ page.profile_image }}" alt="{{ page.title }}"
                class="w-full h-full object-cover object-center" loading="eager">
         </div>
@@ -45,7 +45,7 @@
   </section>
 
   <!-- ── About ─────────────────────────────────────────────────── -->
-  <section class="pb-10 border-t border-base-200/60 pt-8">
+  <section class="pb-10 border-t border-base-300 pt-8">
     <div class="eyebrow mb-4">About</div>
     <div class="prose prose-sm md:prose-base max-w-none leading-relaxed text-justify
                 prose-a:text-primary prose-a:no-underline hover:prose-a:underline
@@ -56,12 +56,12 @@
   </section>
 
   <!-- ── Research Interests ───────────────────────────────────── -->
-  <section class="pb-10 border-t border-base-200/60 pt-8">
+  <section class="pb-10 border-t border-base-300 pt-8">
     <div class="eyebrow mb-5">Research Interests</div>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
 
       <!-- Analog & RF IC Design -->
-      <div class="group border border-base-200/60 rounded-xl p-5 hover:border-primary/25 transition-colors">
+      <div class="card-elevated group border border-base-300 rounded-xl p-5 bg-base-200/50 hover:border-primary/50">
         <div class="w-full h-14 mb-4 text-primary overflow-hidden">
           <svg viewBox="0 0 120 56" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" aria-hidden="true">
             <rect x="34" y="10" width="52" height="36" rx="2" stroke="currentColor" stroke-width="1.4" opacity="0.40"/>
@@ -85,11 +85,11 @@
           </svg>
         </div>
         <h3 class="font-heading font-semibold text-sm text-base-content mb-1">Analog & RF IC Design</h3>
-        <p class="text-xs text-base-content/45 leading-relaxed">Oscillator design, VCO-based ADCs, Ka-band circuits in sub-100nm CMOS nodes.</p>
+        <p class="text-xs text-base-content/65 leading-relaxed">Oscillator design, VCO-based ADCs, Ka-band circuits in sub-100nm CMOS nodes.</p>
       </div>
 
       <!-- Digital SoC & RTL -->
-      <div class="group border border-base-200/60 rounded-xl p-5 hover:border-primary/25 transition-colors">
+      <div class="card-elevated group border border-base-300 rounded-xl p-5 bg-base-200/50 hover:border-primary/50">
         <div class="w-full h-14 mb-4 text-primary overflow-hidden">
           <svg viewBox="0 0 120 56" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" aria-hidden="true">
             <polyline points="4,16 14,16 14,6 26,6 26,16 38,16 38,6 50,6 50,16 62,16 62,6 74,6 74,16 86,16 86,6 98,6 98,16 112,16"
@@ -101,11 +101,11 @@
           </svg>
         </div>
         <h3 class="font-heading font-semibold text-sm text-base-content mb-1">Digital SoC & RTL Design</h3>
-        <p class="text-xs text-base-content/45 leading-relaxed">RISC-V processors, embedded SoC architectures, SystemVerilog verification.</p>
+        <p class="text-xs text-base-content/65 leading-relaxed">RISC-V processors, embedded SoC architectures, SystemVerilog verification.</p>
       </div>
 
       <!-- Signal Processing & Systems -->
-      <div class="group border border-base-200/60 rounded-xl p-5 hover:border-primary/25 transition-colors">
+      <div class="card-elevated group border border-base-300 rounded-xl p-5 bg-base-200/50 hover:border-primary/50">
         <div class="w-full h-14 mb-4 text-primary overflow-hidden">
           <svg viewBox="0 0 120 56" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" aria-hidden="true">
             <circle cx="18" cy="14" r="5" stroke="currentColor" stroke-width="1.4" opacity="0.35"/>
@@ -127,7 +127,7 @@
           </svg>
         </div>
         <h3 class="font-heading font-semibold text-sm text-base-content mb-1">Signal Processing & ML</h3>
-        <p class="text-xs text-base-content/45 leading-relaxed">RF signal processing, learning-based demodulation, SATCOM system modelling.</p>
+        <p class="text-xs text-base-content/65 leading-relaxed">RF signal processing, learning-based demodulation, SATCOM system modelling.</p>
       </div>
 
     </div>
@@ -135,14 +135,14 @@
 
   <!-- ── Journey (timeline) ────────────────────────────────────── -->
   {% if page.news %}
-  <section class="pb-10 border-t border-base-200/60 pt-8">
+  <section class="pb-10 border-t border-base-300 pt-8">
     <div class="eyebrow mb-5">Journey</div>
     <div class="pl-4 timeline-track space-y-8">
       {% for item in page.news %}
       <div class="relative pl-6">
         <div class="absolute -left-[5px] top-[6px] w-2.5 h-2.5 rounded-full bg-primary border-2 border-base-100"></div>
-        <div class="font-mono text-xs text-base-content/40 uppercase tracking-wider mb-1">{{ item.date }}</div>
-        <p class="text-sm text-base-content/75 leading-relaxed">
+        <div class="font-mono text-xs text-base-content/60 uppercase tracking-wider mb-1">{{ item.date }}</div>
+        <p class="text-sm text-base-content/85 leading-relaxed">
           {{ item.text }}
           {% if item.links %}
           —
@@ -160,18 +160,18 @@
 
   <!-- ── Selected publications ────────────────────────────────── -->
   {% if page.featured_pubs %}
-  <section class="pb-10 border-t border-base-200/60 pt-8">
+  <section class="pb-10 border-t border-base-300 pt-8">
     <div class="eyebrow mb-5">Selected Work</div>
-    <div class="border-t border-base-200/40">
+    <div class="border-t border-base-300/60">
       {% for pub in page.featured_pubs %}
       <a href="https://doi.org/{{ pub.doi }}" target="_blank" rel="noopener"
-         class="group flex items-start gap-5 py-5 border-b border-base-200/40 hover:pl-1 transition-all duration-200">
-        <span class="pub-abbr text-primary/50 mt-0.5 flex-shrink-0 w-14">{{ pub.abbr }}</span>
+         class="group flex items-start gap-5 py-5 border-b border-base-300/60 hover:pl-1 hover:bg-base-200/30 transition-all duration-200">
+        <span class="pub-abbr text-primary/75 mt-0.5 flex-shrink-0 w-14">{{ pub.abbr }}</span>
         <div class="min-w-0">
           <p class="text-sm font-medium text-base-content leading-snug group-hover:text-primary transition-colors">
             {{ pub.title }}
           </p>
-          <div class="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-base-content/35">
+          <div class="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-base-content/55">
             <span>{{ pub.venue }}</span>
             <span class="hidden sm:inline opacity-40">·</span>
             <span>{{ pub.coauthors }}</span>
@@ -181,7 +181,7 @@
       {% endfor %}
     </div>
     <div class="mt-5">
-      <a href="/publications/" class="text-xs font-mono text-primary/70 hover:text-primary transition-colors">
+      <a href="/publications/" class="text-xs font-mono text-primary/85 hover:text-primary transition-colors">
         view all publications →
       </a>
     </div>
@@ -190,23 +190,23 @@
 
   <!-- ── Latest blog post ──────────────────────────────────────── -->
   {% if posts %}
-  <section class="pb-10 border-t border-base-200/60 pt-8">
+  <section class="pb-10 border-t border-base-300 pt-8">
     <div class="eyebrow mb-5">From the Blog</div>
     {% set latest = posts[0] %}
     <a href="{{ latest.url }}/"
-       class="group flex items-baseline gap-6 py-4 border-b border-base-200/40 hover:pl-1 transition-all duration-200">
-      <span class="font-mono text-xs text-base-content/30 flex-shrink-0 w-24 tabular-nums">{{ latest.date }}</span>
+       class="group flex items-baseline gap-6 py-4 border-b border-base-300/60 hover:pl-1 hover:bg-base-200/30 transition-all duration-200">
+      <span class="font-mono text-xs text-base-content/50 flex-shrink-0 w-24 tabular-nums">{{ latest.date }}</span>
       <div class="min-w-0">
         <h3 class="font-heading font-medium text-base text-base-content group-hover:text-primary transition-colors leading-snug">
           {{ latest.title }}
         </h3>
         {% if latest.description %}
-        <p class="mt-1 text-sm text-base-content/45 leading-relaxed line-clamp-1">{{ latest.description }}</p>
+        <p class="mt-1 text-sm text-base-content/65 leading-relaxed line-clamp-1">{{ latest.description }}</p>
         {% endif %}
       </div>
     </a>
     <div class="mt-5">
-      <a href="/blog/" class="text-xs font-mono text-primary/70 hover:text-primary transition-colors">
+      <a href="/blog/" class="text-xs font-mono text-primary/85 hover:text-primary transition-colors">
         browse all posts →
       </a>
     </div>

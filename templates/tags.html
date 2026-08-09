@@ -10,11 +10,11 @@
     </h1>
   </div>
 
-  <div class="border-t border-base-200 pt-10 space-y-4">
+  <div class="border-t border-base-300 pt-10 space-y-4">
     {% for post in posts %}
     <a href="{{ post.url }}/"
-       class="card-glow block border border-base-200 rounded-lg p-5 hover:border-primary/30 transition-colors group">
-      <div class="font-mono text-xs text-base-content/35 mb-2">{{ post.date }}</div>
+       class="card-elevated card-glow block border border-base-300 rounded-lg p-5 bg-base-200/40 hover:border-primary/50 group">
+      <div class="font-mono text-xs text-base-content/55 mb-2">{{ post.date }}</div>
       <h2 class="font-heading font-medium text-base text-base-content group-hover:text-primary transition-colors">
         {{ post.title }}
       </h2>
@@ -23,7 +23,7 @@
   </div>
 
   <div class="mt-8">
-    <a href="/blog/" class="text-xs font-mono text-primary/70 hover:text-primary transition-colors">
+    <a href="/blog/" class="text-xs font-mono text-primary/85 hover:text-primary transition-colors">
       ← all posts
     </a>
   </div>

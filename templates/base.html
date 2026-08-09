@@ -29,7 +29,7 @@
   <div id="cursor-halo" aria-hidden="true"></div>
 
   <!-- Navbar -->
-  <header class="navbar-blur fixed top-0 left-0 right-0 z-50 border-b border-base-200">
+  <header class="navbar-blur fixed top-0 left-0 right-0 z-50 border-b border-base-300">
     <div class="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between w-full">
 
       <!-- Brand -->
@@ -48,7 +48,7 @@
             {% set is_active = (current_url == norm or current_url == norm + '/' or (norm and current_url.startswith(norm + '/'))) %}
           {% endif %}
           <a href="{{ item.url }}"
-             class="px-3 py-1.5 rounded text-sm transition-colors {% if is_active %}text-primary font-medium{% else %}text-base-content/60 hover:text-base-content{% endif %}">
+             class="px-3 py-1.5 rounded text-sm transition-colors {% if is_active %}text-primary font-medium{% else %}text-base-content/75 hover:text-base-content{% endif %}">
             {{ item.name }}
           </a>
         {% endfor %}
@@ -80,11 +80,11 @@
             <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
           <div id="mobile-menu"
-               class="hidden absolute right-0 top-full mt-2 w-44 bg-base-100 border border-base-200 rounded-lg shadow-lg py-1 z-50">
+               class="hidden absolute right-0 top-full mt-2 w-44 bg-base-100 border border-base-300 rounded-lg shadow-lg py-1 z-50">
             {% for item in site.navigation %}
             <a href="{{ item.url }}" class="block px-4 py-2 text-sm text-base-content/70 hover:text-primary hover:bg-base-200 transition-colors">{{ item.name }}</a>
             {% endfor %}
-            <div class="border-t border-base-200 mt-1 pt-1">
+            <div class="border-t border-base-300 mt-1 pt-1">
               <a href="/assets/pdf/Devesh_Academic_CV.pdf" target="_blank"
                  class="block px-4 py-2 text-sm text-base-content/70 hover:text-primary hover:bg-base-200 transition-colors font-mono">cv ↗</a>
             </div>
@@ -100,8 +100,8 @@
   </main>
 
   <!-- Footer -->
-  <footer class="mt-24 py-8 border-t border-base-200">
-    <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono text-base-content/30">
+  <footer class="mt-24 py-8 border-t border-base-300">
+    <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono text-base-content/50">
       <span>Devesh Bhaskaran · Bengaluru, India</span>
       <span>deveshbhaskaran@gmail.com</span>
     </div>

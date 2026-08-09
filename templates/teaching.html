@@ -11,18 +11,18 @@
   <!-- Teaching Assistantships -->
   {% if page.roles %}
   <section class="mb-14">
-    <div class="border-t border-base-200/60 pt-2">
-      <div class="font-mono text-xs text-base-content/35 uppercase tracking-widest mb-0 py-4">Teaching Assistantships</div>
+    <div class="border-t border-base-300 pt-2">
+      <div class="font-mono text-xs text-base-content/60 uppercase tracking-widest mb-0 py-4">Teaching Assistantships</div>
     </div>
     <div class="space-y-0">
       {% for role in page.roles %}
-      <div class="py-6 border-b border-base-200/40">
+      <div class="py-6 border-b border-base-300/60">
         <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
           <h2 class="font-heading font-semibold text-base text-base-content leading-snug">{{ role.course }}</h2>
-          <span class="font-mono text-xs text-base-content/35 flex-shrink-0">{{ role.period }}</span>
+          <span class="font-mono text-xs text-base-content/55 flex-shrink-0">{{ role.period }}</span>
         </div>
-        <div class="font-mono text-xs text-primary/60 mb-3">{{ role.type }} · {{ role.institution }}</div>
-        <p class="text-sm text-base-content/60 leading-relaxed text-justify">{{ role.description }}</p>
+        <div class="font-mono text-xs text-primary/80 mb-3">{{ role.type }} · {{ role.institution }}</div>
+        <p class="text-sm text-base-content/75 leading-relaxed text-justify">{{ role.description }}</p>
       </div>
       {% endfor %}
     </div>
@@ -32,18 +32,18 @@
   <!-- Workshops -->
   {% if page.workshops %}
   <section>
-    <div class="border-t border-base-200/60 pt-2">
-      <div class="font-mono text-xs text-base-content/35 uppercase tracking-widest py-4">Workshops</div>
+    <div class="border-t border-base-300 pt-2">
+      <div class="font-mono text-xs text-base-content/60 uppercase tracking-widest py-4">Workshops</div>
     </div>
     <div class="space-y-0">
       {% for ws in page.workshops %}
-      <div class="py-6 border-b border-base-200/40">
+      <div class="py-6 border-b border-base-300/60">
         <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
           <h2 class="font-heading font-semibold text-base text-base-content leading-snug">{{ ws.title }}</h2>
-          <span class="font-mono text-xs text-base-content/35 flex-shrink-0">{{ ws.period }}</span>
+          <span class="font-mono text-xs text-base-content/55 flex-shrink-0">{{ ws.period }}</span>
         </div>
-        <div class="font-mono text-xs text-primary/60 mb-3">{{ ws.format }} · {{ ws.venue }}</div>
-        <p class="text-sm text-base-content/60 leading-relaxed text-justify">{{ ws.description }}</p>
+        <div class="font-mono text-xs text-primary/80 mb-3">{{ ws.format }} · {{ ws.venue }}</div>
+        <p class="text-sm text-base-content/75 leading-relaxed text-justify">{{ ws.description }}</p>
       </div>
       {% endfor %}
     </div>
@@ -51,7 +51,7 @@
   {% endif %}
 
   {% if content %}
-  <div class="mt-10 pt-8 border-t border-base-200/60 prose prose-sm max-w-3xl text-base-content/60 dark:prose-invert">
+  <div class="mt-10 pt-8 border-t border-base-300 prose prose-sm max-w-3xl text-base-content/75 dark:prose-invert">
     {{ content }}
   </div>
   {% endif %}

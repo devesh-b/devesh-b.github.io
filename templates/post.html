@@ -19,21 +19,21 @@
       {{ page.title }}
     </h1>
     {% if page.description %}
-    <p class="mt-3 text-base-content/55 text-base leading-relaxed font-light">{{ page.description }}</p>
+    <p class="mt-3 text-base-content/70 text-base leading-relaxed font-light">{{ page.description }}</p>
     {% endif %}
-    <div class="font-mono text-xs text-base-content/30 mt-4 flex flex-wrap items-center gap-3">
+    <div class="font-mono text-xs text-base-content/50 mt-4 flex flex-wrap items-center gap-3">
       {% if page.date %}<span>{{ page.date }}</span>{% endif %}
       {% if page.tags %}
       {% for tag in page.tags %}
       <a href="/tags/{{ tag }}.html"
-         class="text-base-content/40 hover:text-primary transition-colors">{{ tag }}</a>{% if not loop.last %}<span class="opacity-30">·</span>{% endif %}
+         class="text-base-content/60 hover:text-primary transition-colors">{{ tag }}</a>{% if not loop.last %}<span class="opacity-50">·</span>{% endif %}
       {% endfor %}
       {% endif %}
     </div>
   </header>
 
   <!-- Divider -->
-  <div class="border-t border-base-200 mb-10"></div>
+  <div class="border-t border-base-300 mb-10"></div>
 
   <!-- Body -->
   <div class="prose prose-sm md:prose-base max-w-3xl text-justify
@@ -46,8 +46,8 @@
   </div>
 
   <!-- Footer nav -->
-  <div class="mt-14 pt-6 border-t border-base-200">
-    <a href="/blog/" class="text-xs font-mono text-primary/70 hover:text-primary transition-colors">
+  <div class="mt-14 pt-6 border-t border-base-300">
+    <a href="/blog/" class="text-xs font-mono text-primary/85 hover:text-primary transition-colors">
       ← back to all posts
     </a>
   </div>
