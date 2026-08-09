@@ -15,7 +15,7 @@
     {% for pub in page.publications %}
     <div class="group py-6 border-b border-base-300/60 hover:bg-base-200/30 transition-colors px-2 -mx-2 rounded">
       <div class="flex items-start gap-5">
-        <span class="pub-abbr text-primary/75 mt-0.5 flex-shrink-0 w-14 pt-px">{{ pub.abbr }}</span>
+        <span class="pub-abbr bg-accent/12 text-accent mt-0.5 flex-shrink-0 w-14 px-1.5 py-0.5 rounded text-center">{{ pub.abbr }}</span>
         <div class="min-w-0 flex-1">
           <h2 class="font-heading font-medium text-sm md:text-base text-base-content leading-snug">
             {{ pub.title }}
@@ -28,7 +28,7 @@
             {% if pub.doi %}
             <a href="https://doi.org/{{ pub.doi }}"
                target="_blank" rel="noopener"
-               class="font-mono text-primary/75 hover:text-primary transition-colors">
+               class="font-mono text-accent hover:text-accent/75 transition-colors">
               doi ↗
             </a>
             {% endif %}

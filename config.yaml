@@ -19,7 +19,7 @@ theme:
       --color-primary-content: #FFFFFF;
       --color-secondary: #6B7A9A;
       --color-secondary-content: #FFFFFF;
-      --color-accent: #3B4A6B;
+      --color-accent: #B5621E;
       --color-accent-content: #FFFFFF;
       --color-neutral: #DAD0C4;
       --color-neutral-content: #1A1A1A;
@@ -47,8 +47,8 @@ theme:
       --color-primary-content: #0D1117;
       --color-secondary: #5A6A9A;
       --color-secondary-content: #E8E4DD;
-      --color-accent: #7B8FC4;
-      --color-accent-content: #0D1117;
+      --color-accent: #D4884A;
+      --color-accent-content: #1A1A1A;
       --color-neutral: #282828;
       --color-neutral-content: #E8E4DD;
       --color-info: oklch(70% 0.10 220);
