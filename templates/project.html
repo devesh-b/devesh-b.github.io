@@ -101,6 +101,46 @@
 
 </article>
 
+<!-- Lightbox -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div id="lightbox-backdrop" onclick="closeLightbox()"></div>
+  <div id="lightbox-content">
+    <button id="lightbox-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+</div>
+
+<script>
+  (function () {
+    var lb = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lightbox-img');
+
+    function openLightbox(src, alt) {
+      lbImg.src = src;
+      lbImg.alt = alt || '';
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    window.closeLightbox = closeLightbox;
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    var content = document.getElementById('project-content');
+    if (content) {
+      content.querySelectorAll('img').forEach(function (img) {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', function () { openLightbox(img.src, img.alt); });
+      });
+    }
+  })();
+</script>
+
 {% block jsonld %}
 <script type="application/ld+json">
 {
