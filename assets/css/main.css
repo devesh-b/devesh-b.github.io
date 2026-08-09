@@ -454,6 +454,63 @@ html {
   border-radius: 0.2rem;
 }
 
+/* ── Mobile drawer ───────────────────────────────────────────── */
+#drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9994;
+  background: rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+#drawer-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#mobile-drawer {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 17rem;
+  max-width: 85vw;
+  z-index: 9995;
+  background: var(--color-base-100);
+  border-left: 1px solid var(--color-base-300);
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#mobile-drawer.open {
+  transform: translateX(0);
+}
+
+/* ── Project page TOC ────────────────────────────────────────── */
+.toc-panel {
+  margin-bottom: 1.5rem;
+}
+
+.toc-link {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-base-content);
+  opacity: 0.55;
+  text-decoration: none;
+  transition: opacity 0.15s ease, color 0.15s ease;
+  display: block;
+  padding: 0.1rem 0;
+}
+.toc-link:hover {
+  opacity: 1;
+  color: var(--color-primary);
+}
+
 /* ── List hover indent transition ───────────────────────────── */
 .list-row-hover {
   transition: padding-left 0.15s ease;

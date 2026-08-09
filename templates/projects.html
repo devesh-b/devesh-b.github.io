@@ -464,13 +464,17 @@
             </div>
           </div>
           <p class="text-xs text-base-content/70 leading-relaxed flex-1">{{ proj.description }}</p>
-          {% if proj.tags %}
-          <div class="flex flex-wrap gap-1.5 mt-3">
+          <div class="flex flex-wrap items-center gap-1.5 mt-3">
+            {% if proj.status %}
+            {% set sc = 'accent' if proj.status == 'Published' else ('teal' if proj.status == 'Open Source' else ('plum' if proj.status == 'Award' else 'primary')) %}
+            <span class="px-1.5 py-0.5 text-xs font-mono bg-{{ sc }}/10 text-{{ sc }} border border-{{ sc }}/20 rounded">{{ proj.status }}</span>
+            {% endif %}
+            {% if proj.tags %}
             {% for tag in proj.tags %}
             <span class="px-1.5 py-0.5 text-xs font-mono bg-{{ cat_color }}/10 text-{{ cat_color }} rounded">{{ tag }}</span>
             {% endfor %}
+            {% endif %}
           </div>
-          {% endif %}
         </div>
 
       {% if proj.slug %}</a>{% else %}</div>{% endif %}

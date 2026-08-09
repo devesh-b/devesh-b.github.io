@@ -13,6 +13,14 @@
 
   <div class="border-t border-base-300 pt-2">
     {% for pub in page.publications %}
+    {% set bib_key = (pub.abbr | lower) + (pub.year | string) %}
+    <div id="bib-{{ loop.index }}" hidden>@inproceedings{{ '{' }}{{ bib_key }},
+  author    = {{ '{' }}{{ pub.authors }}{{ '}' }},
+  title     = {{ '{' }}{{ pub.title }}{{ '}' }},
+  booktitle = {{ '{' }}{{ pub.venue }}{{ '}' }},
+  year      = {{ '{' }}{{ pub.year }}{{ '}' }}{% if pub.doi %},
+  doi       = {{ '{' }}{{ pub.doi }}{{ '}' }}{% endif %}
+{{ '}' }}</div>
     <div class="group py-6 border-b border-base-300/60 hover:bg-base-200/30 transition-colors px-2 -mx-2 rounded">
       <div class="flex items-start gap-5">
         <span class="pub-abbr bg-accent/12 text-accent mt-0.5 flex-shrink-0 w-14 px-1.5 py-0.5 rounded text-center">{{ pub.abbr }}</span>
@@ -34,14 +42,64 @@
             </a>
             {% endif %}
           </div>
+          <div class="mt-2.5 flex flex-wrap items-center gap-3">
+            {% if pub.abstract %}
+            <button class="abs-toggle flex items-center gap-1 text-xs font-mono text-base-content/45 hover:text-primary transition-colors"
+                    onclick="toggleAbstract('abs-{{ loop.index }}', this)">
+              <span class="abs-arrow" style="display:inline-block;width:0.7em">▸</span> abstract
+            </button>
+            {% endif %}
+            <button class="flex items-center gap-1 text-xs font-mono text-base-content/45 hover:text-primary transition-colors"
+                    onclick="copyBib('bib-{{ loop.index }}', this)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span class="bib-label">BibTeX</span>
+            </button>
+          </div>
           {% if pub.abstract %}
-          <p class="mt-3 text-xs text-base-content/65 leading-relaxed max-w-2xl">{{ pub.abstract }}</p>
+          <div id="abs-{{ loop.index }}" class="abs-body overflow-hidden" style="max-height:0;transition:max-height 0.3s ease">
+            <p class="mt-3 text-xs text-base-content/65 leading-relaxed max-w-2xl">{{ pub.abstract }}</p>
+          </div>
           {% endif %}
         </div>
       </div>
     </div>
     {% endfor %}
   </div>
+
+  <script>
+    function toggleAbstract(id, btn) {
+      var body = document.getElementById(id);
+      var arrow = btn.querySelector('.abs-arrow');
+      var isOpen = body.style.maxHeight !== '0px' && body.style.maxHeight !== '';
+      if (isOpen) {
+        body.style.maxHeight = '0px';
+        arrow.textContent = '▸';
+      } else {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        arrow.textContent = '▾';
+      }
+    }
+
+    function copyBib(id, btn) {
+      var text = document.getElementById(id).textContent.trim();
+      var label = btn.querySelector('.bib-label');
+      if (!navigator.clipboard) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        label.textContent = 'Copied!';
+        setTimeout(function() { label.textContent = 'BibTeX'; }, 1800);
+        return;
+      }
+      navigator.clipboard.writeText(text).then(function() {
+        label.textContent = 'Copied!';
+        setTimeout(function() { label.textContent = 'BibTeX'; }, 1800);
+      });
+    }
+  </script>
 
   {% if content %}
   <div class="mt-10 pt-8 border-t border-base-300 prose prose-sm max-w-none text-base-content/75 dark:prose-invert">
