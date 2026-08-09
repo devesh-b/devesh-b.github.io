@@ -393,19 +393,26 @@
   <section class="mb-14">
     <!-- Category header -->
     <div class="border-t border-base-300 pt-8 mb-6 flex items-end justify-between gap-4">
-      <div class="font-mono text-xs text-base-content/60 uppercase tracking-widest">{{ category.name }}</div>
-      <div class="w-28 h-8 flex-shrink-0 overflow-hidden opacity-80">
+      <div class="font-mono text-xs uppercase tracking-widest font-semibold
+        {%- if 'IC' in category.name or 'Analog' in category.name %} text-accent
+        {%- elif 'Digital' in category.name %} text-primary
+        {%- else %} text-teal{%- endif %}">{{ category.name }}</div>
+      <div class="w-28 h-8 flex-shrink-0 overflow-hidden opacity-90
+        {%- if 'IC' in category.name or 'Analog' in category.name %} text-accent
+        {%- elif 'Digital' in category.name %} text-primary
+        {%- else %} text-teal{%- endif %}">
         {{ category_header_svg(category.name) }}
       </div>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {% for proj in category.entries %}
+      {% set cat_color = 'accent' if ('IC' in category.name or 'Analog' in category.name) else ('primary' if 'Digital' in category.name else 'teal') %}
       {% if proj.slug %}
       <a href="/projects/{{ proj.slug }}/"
-         class="card-glow flex flex-col card-elevated border border-base-300 rounded-xl overflow-hidden bg-base-200/40 hover:border-primary/50 group">
+         class="card-glow flex flex-col card-elevated border border-{{ cat_color }}/20 rounded-xl overflow-hidden bg-{{ cat_color }}/5 hover:border-{{ cat_color }}/50 group">
       {% else %}
-      <div class="card-glow flex flex-col card-elevated border border-base-300 rounded-xl overflow-hidden bg-base-200/40 group">
+      <div class="card-glow flex flex-col card-elevated border border-{{ cat_color }}/20 rounded-xl overflow-hidden bg-{{ cat_color }}/5 group">
       {% endif %}
 
         <!-- Card visual header -->
@@ -415,24 +422,24 @@
                class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity">
         </div>
         {% else %}
-        <div class="relative w-full h-20 overflow-hidden bg-base-200/60 flex items-center justify-center flex-shrink-0">
+        <div class="relative w-full h-20 overflow-hidden bg-{{ cat_color }}/8 flex items-center justify-center flex-shrink-0 text-{{ cat_color }}">
           <div class="absolute inset-0">{{ project_svg(proj.slug, category.name) }}</div>
-          <div class="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-base-200/40 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-{{ cat_color }}/10 to-transparent"></div>
         </div>
         {% endif %}
 
         <!-- Card content -->
         <div class="p-5 flex flex-col flex-1">
           <div class="flex items-start justify-between gap-3 mb-2">
-            <h3 class="font-heading font-medium text-sm text-base-content group-hover:text-primary transition-colors leading-snug">
+            <h3 class="font-heading font-medium text-sm text-base-content group-hover:text-{{ cat_color }} transition-colors leading-snug">
               {{ proj.title }}
             </h3>
             <div class="flex items-center gap-1.5 flex-shrink-0">
               {% if proj.slug %}
-              <span class="text-base-content/45 group-hover:text-primary/70 transition-colors text-xs font-mono">→</span>
+              <span class="text-base-content/45 group-hover:text-{{ cat_color }}/70 transition-colors text-xs font-mono">→</span>
               {% elif proj.link %}
               <a href="{{ proj.link }}" target="_blank" rel="noopener"
-                 class="text-base-content/55 hover:text-primary transition-colors">
+                 class="text-base-content/55 hover:text-{{ cat_color }} transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
               </a>
               {% endif %}
@@ -442,7 +449,7 @@
           {% if proj.tags %}
           <div class="flex flex-wrap gap-1.5 mt-3">
             {% for tag in proj.tags %}
-            <span class="px-1.5 py-0.5 text-xs font-mono bg-primary/10 text-primary rounded">{{ tag }}</span>
+            <span class="px-1.5 py-0.5 text-xs font-mono bg-{{ cat_color }}/10 text-{{ cat_color }} rounded">{{ tag }}</span>
             {% endfor %}
           </div>
           {% endif %}

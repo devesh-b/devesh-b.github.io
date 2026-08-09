@@ -6,6 +6,19 @@
 /* Dark variant tied to data-theme attribute */
 @variant dark ([data-theme="academic-dark"] &);
 
+/* ── Extended palette ────────────────────────────────────────── */
+@theme {
+  --color-teal: #2D7472;
+  --color-plum: #6B3A5E;
+  --color-forest: #3A6B4A;
+}
+
+[data-theme="academic-dark"] {
+  --color-teal: #4BA8A4;
+  --color-plum: #B06A98;
+  --color-forest: #5AA870;
+}
+
 /* ── Cursor halo ─────────────────────────────────────────────── */
 #cursor-halo {
   display: none;
@@ -89,11 +102,11 @@
 }
 
 /* ── Eyebrow accent bar ──────────────────────────────────────── */
-.eyebrow-accent {
-  border-left: 2px solid var(--color-primary);
-  padding-left: 0.6rem;
-  opacity: 1;
-}
+.eyebrow-accent           { border-left: 2px solid var(--color-primary); padding-left: 0.6rem; opacity: 1; }
+.eyebrow-accent-amber     { border-left-color: var(--color-accent); }
+.eyebrow-accent-teal      { border-left-color: var(--color-teal); }
+.eyebrow-accent-plum      { border-left-color: var(--color-plum); }
+.eyebrow-accent-forest    { border-left-color: var(--color-forest); }
 
 /* ── Card elevation — subtle lift for both modes ─────────────── */
 .card-elevated {
