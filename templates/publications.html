@@ -23,8 +23,9 @@
           <p class="mt-1.5 text-xs font-mono text-base-content/55 leading-relaxed">
             {{ pub.authors }}
           </p>
-          <div class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
-            <span class="font-mono text-base-content/55">{{ pub.venue }} · {{ pub.year }}</span>
+          <div class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs">
+            <span class="bg-plum/10 text-plum border border-plum/20 px-1.5 py-0.5 rounded font-mono">{{ pub.year }}</span>
+            <span class="font-mono text-base-content/55">{{ pub.venue }}</span>
             {% if pub.doi %}
             <a href="https://doi.org/{{ pub.doi }}"
                target="_blank" rel="noopener"

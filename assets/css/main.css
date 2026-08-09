@@ -171,6 +171,33 @@ h1, h2, h3, h4 {
   font-optical-sizing: auto;
 }
 
+/* ── Subtle grain texture overlay ───────────────────────────── */
+#grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9997;
+  opacity: 0.028;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+[data-theme="academic-dark"] #grain {
+  opacity: 0.045;
+  mix-blend-mode: screen;
+}
+
+/* ── Prose blockquote ────────────────────────────────────────── */
+.prose blockquote {
+  border-left: 3px solid var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 0.75rem 1rem;
+  font-style: normal;
+  color: var(--color-base-content);
+}
+.prose blockquote p { margin: 0; }
+
 /* ── Smooth scroll & selection ───────────────────────────────── */
 html {
   scroll-behavior: smooth;
