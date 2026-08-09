@@ -11,7 +11,7 @@ link: "https://github.com/devesh-b/tt09-deveshb-8-bitMAC"
 
 Two separate IC designs submitted to the **Tiny Tapeout 9** open shuttle via Efabless — one digital, one analog — both targeting the same multi-project wafer. The analog submission received the **$300 Tiny Tapeout Award** at the 2024 Chipalooza competition, selected from across all open shuttle entries.
 
-Source (digital MAC): [github.com/devesh-b/tt09-deveshb-8-bitMAC](https://github.com/devesh-b/tt09-deveshb-8-bitMAC)
+Source (digital MAC): [github.com/devesh-b/tt09-deveshb-8-bitMAC](https://github.com/devesh-b/tt09-deveshb-8-bitMAC) · Source (analog filter): [github.com/devesh-b/tt09-deveshb-active_filter](https://github.com/devesh-b/tt09-deveshb-active_filter)
 
 ---
 
@@ -113,6 +113,8 @@ A second TT9 submission on the analog track: a **universal active filter** cover
 </figure>
 
 The filter topology uses an OTA (operational transconductance amplifier) or op-amp-RC biquad structure where the cut-off frequency is set by the ratio of passive components. Mode selection — LP/HP/BP — is configured via the TT analog I/O pins. Designed collaboratively through PESU-ECC.
+
+Source: [github.com/devesh-b/tt09-deveshb-active_filter](https://github.com/devesh-b/tt09-deveshb-active_filter)
 
 ---
 
