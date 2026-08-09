@@ -534,6 +534,10 @@ def parse_file(filepath, pygments_theme, markdown_config=None):
     html_data = md.convert(markdown_data)
     md.reset()
 
+    raw_text = re.sub(r'<[^>]+>', ' ', html_data)
+    word_count = len(raw_text.split())
+    page_config['reading_time'] = max(1, round(word_count / 200))
+
     rel_path = os.path.relpath(filepath, CONTENT_DIR)
 
     if rel_path.startswith(".."):
@@ -915,6 +919,56 @@ def main():
             print("Generated sitemap.xml")
         except OSError as e:
             print(f"Error: Failed to write sitemap.xml: {e}")
+
+        # Search index
+        search_items = []
+        for page in pages:
+            data = page["data"]
+            layout = data.get("layout", "")
+            if layout in ("post", "project"):
+                search_items.append({
+                    "type": layout,
+                    "title": data.get("title", ""),
+                    "url": data.get("url", ""),
+                    "description": data.get("description", "") or data.get("subtitle", "") or "",
+                    "tags": list(data.get("tags") or []),
+                })
+        try:
+            with open(os.path.join(OUTPUT_DIR, "search.json"), "w", encoding="utf-8") as f:
+                json.dump(search_items, f, ensure_ascii=False)
+            print("Generated search.json")
+        except OSError as e:
+            print(f"Error: Failed to write search.json: {e}")
+
+        # RSS / Atom feed
+        feed_template = templates.get("feed.xml")
+        if feed_template:
+            post_items = sorted(
+                [p["data"] for p in pages if p["data"].get("layout") == "post"],
+                key=lambda x: safe_parse_date(x.get("date")) or datetime.min,
+                reverse=True,
+            )
+            feed_xml = feed_template.render(site=site_config, posts=post_items)
+            try:
+                with open(os.path.join(OUTPUT_DIR, "feed.xml"), "w", encoding="utf-8") as f:
+                    f.write(feed_xml)
+                print("Generated feed.xml")
+            except OSError as e:
+                print(f"Error: Failed to write feed.xml: {e}")
+
+        # 404 page
+        template_404 = templates.get("404")
+        if template_404:
+            html_404 = template_404.render(
+                site=site_config,
+                page={"title": "404 — Not Found", "url": "/404"},
+            )
+            try:
+                with open(os.path.join(OUTPUT_DIR, "404.html"), "w", encoding="utf-8") as f:
+                    f.write(html_404)
+                print("Generated 404.html")
+            except OSError as e:
+                print(f"Error: Failed to write 404.html: {e}")
 
 
 if __name__ == "__main__":

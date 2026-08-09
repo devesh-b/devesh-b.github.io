@@ -153,6 +153,15 @@ const py_build_plugin = () => {
     name: 'builder-ssg',
     closeBundle() {
       console.log('Cleaning up root directory...');
+      // Copy non-HTML static files to dist before cleanup
+      const staticAssets = ['search.json', 'feed.xml', 'sitemap.xml'];
+      for (const f of staticAssets) {
+        const src = path.join(__dirname, f);
+        const dest = path.join(__dirname, 'dist', f);
+        if (fs.existsSync(src)) {
+          try { fs.copyFileSync(src, dest); } catch (_) {}
+        }
+      }
       try {
         const output = execSync(`"${pythonExecutable}" src/main.py --clean`);
         console.log(output.toString().trim());

@@ -389,8 +389,24 @@
     </p>
   </div>
 
+  <!-- Category filter pills -->
+  {% if page.categories | length > 1 %}
+  <div class="flex flex-wrap gap-2 mb-10" id="project-filter">
+    <button class="proj-pill tag-pill active px-2.5 py-1 text-xs font-mono rounded-md bg-base-200 text-base-content/65"
+            onclick="filterProjects(null, this)">All</button>
+    {% for cat in page.categories %}
+    {% set pc = 'accent' if ('IC' in cat.name or 'Analog' in cat.name) else ('primary' if 'Digital' in cat.name else 'teal') %}
+    <button class="proj-pill tag-pill px-2.5 py-1 text-xs font-mono rounded-md bg-base-200 text-base-content/65 flex items-center gap-1.5"
+            onclick="filterProjects('{{ cat.name }}', this)" data-filter="{{ cat.name }}">
+      <span class="w-1.5 h-1.5 rounded-full bg-{{ pc }} inline-block flex-shrink-0"></span>
+      {{ cat.name }}
+    </button>
+    {% endfor %}
+  </div>
+  {% endif %}
+
   {% for category in page.categories %}
-  <section class="mb-14">
+  <section class="mb-14 project-section" data-section="{{ category.name }}">
     <!-- Category header -->
     <div class="border-t border-base-300 pt-8 mb-6 flex items-end justify-between gap-4">
       <div class="font-mono text-xs uppercase tracking-widest font-semibold
@@ -410,9 +426,11 @@
       {% set cat_color = 'accent' if ('IC' in category.name or 'Analog' in category.name) else ('primary' if 'Digital' in category.name else 'teal') %}
       {% if proj.slug %}
       <a href="/projects/{{ proj.slug }}/"
+         data-category="{{ category.name }}"
          class="card-glow flex flex-col card-elevated border border-{{ cat_color }}/20 rounded-xl overflow-hidden bg-{{ cat_color }}/5 hover:border-{{ cat_color }}/50 group">
       {% else %}
-      <div class="card-glow flex flex-col card-elevated border border-{{ cat_color }}/20 rounded-xl overflow-hidden bg-{{ cat_color }}/5 group">
+      <div data-category="{{ category.name }}"
+           class="card-glow flex flex-col card-elevated border border-{{ cat_color }}/20 rounded-xl overflow-hidden bg-{{ cat_color }}/5 group">
       {% endif %}
 
         <!-- Card visual header -->
@@ -466,5 +484,21 @@
   {% endif %}
 
 </div>
+
+<script>
+  function filterProjects(cat, btn) {
+    document.querySelectorAll('.proj-pill').forEach(function(p) { p.classList.remove('active'); });
+    if (btn) btn.classList.add('active');
+    document.querySelectorAll('.project-section').forEach(function(section) {
+      var visible = 0;
+      section.querySelectorAll('[data-category]').forEach(function(card) {
+        var show = !cat || card.dataset.category === cat;
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      section.style.display = visible > 0 ? '' : 'none';
+    });
+  }
+</script>
 
 {% endblock %}

@@ -25,7 +25,9 @@
     {% endif %}
     <div class="font-mono text-xs text-base-content/50 mt-4 flex flex-wrap items-center gap-3">
       {% if page.date %}<span>{{ page.date }}</span>{% endif %}
+      {% if page.reading_time %}<span class="opacity-70">~{{ page.reading_time }} min read</span>{% endif %}
       {% if page.tags %}
+      <span class="opacity-30">·</span>
       {% for tag in page.tags %}
       <a href="/tags/{{ tag }}.html"
          class="text-base-content/60 hover:text-primary transition-colors">{{ tag }}</a>{% if not loop.last %}<span class="opacity-50">·</span>{% endif %}
@@ -46,6 +48,43 @@
               dark:prose-invert">
     {{ content }}
   </div>
+
+  <!-- Related posts -->
+  {% if page.tags and posts %}
+  {% set ns = namespace(related=[]) %}
+  {% for post in posts %}
+    {% if post.url != page.url and post.tags and ns.related | length < 3 %}
+      {% for tag in post.tags %}
+        {% if tag in page.tags and post not in ns.related %}
+          {% set ns.related = ns.related + [post] %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+  {% if ns.related %}
+  <div class="mt-16 pt-8 border-t border-base-300">
+    <div class="eyebrow eyebrow-accent eyebrow-accent-forest mb-6">Related Posts</div>
+    <div class="grid grid-cols-1 sm:grid-cols-{{ [ns.related | length, 3] | min }} gap-4">
+      {% for rel in ns.related %}
+      <a href="{{ rel.url }}/"
+         class="card-elevated block border border-base-300 rounded-xl p-5 hover:border-forest/40 group transition-all">
+        <div class="font-mono text-xs text-base-content/40 mb-2">{{ rel.date }}</div>
+        <h3 class="font-heading font-medium text-sm text-base-content group-hover:text-primary transition-colors leading-snug">
+          {{ rel.title }}
+        </h3>
+        {% if rel.tags %}
+        <div class="flex flex-wrap gap-1 mt-3">
+          {% for tag in rel.tags %}
+          <span class="text-xs font-mono bg-forest/8 text-forest px-1.5 py-0.5 rounded">{{ tag }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  {% endif %}
 
   <!-- Footer nav -->
   <div class="mt-14 pt-6 border-t border-base-300">

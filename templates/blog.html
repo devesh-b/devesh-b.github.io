@@ -34,6 +34,7 @@
       {% endif %}
       <div class="mt-4 flex flex-wrap items-center gap-3">
         <span class="font-mono text-xs text-base-content/45">{{ featured.date }}</span>
+        {% if featured.reading_time %}<span class="font-mono text-xs text-base-content/35">~{{ featured.reading_time }} min</span>{% endif %}
         {% if featured.tags %}
         {% for tag in featured.tags %}
         <span class="px-1.5 py-0.5 text-xs font-mono bg-forest/10 text-forest rounded border border-forest/20">{{ tag }}</span>
