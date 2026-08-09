@@ -20,12 +20,14 @@
     })();
   </script>
 
-  <link rel="stylesheet" crossorigin href="/assets/syntax-MrlF3D69.css">
+  <link rel="stylesheet" crossorigin href="/assets/syntax-BdA_IL2U.css">
 </head>
 <body class="min-h-screen bg-base-100 text-base-content antialiased">
 
   <!-- Cursor halo layer -->
   <div id="cursor-halo" aria-hidden="true"></div>
+  <!-- Grain texture -->
+  <div id="grain" aria-hidden="true"></div>
 
   <!-- Navbar -->
   <header class="navbar-blur fixed top-0 left-0 right-0 z-50 border-b border-base-300">
@@ -44,7 +46,7 @@
             
           
           <a href="/"
-             class="px-3 py-1.5 rounded text-sm transition-colors text-base-content/75 hover:text-base-content">
+             class="px-3 py-1.5 rounded text-sm transition-colors text-base-content/75 hover:text-base-content hover:bg-base-200/60">
             About
           </a>
         
@@ -53,7 +55,7 @@
             
           
           <a href="/publications/"
-             class="px-3 py-1.5 rounded text-sm transition-colors text-base-content/75 hover:text-base-content">
+             class="px-3 py-1.5 rounded text-sm transition-colors text-base-content/75 hover:text-base-content hover:bg-base-200/60">
             Publications
           </a>
         
@@ -62,7 +64,7 @@
             
           
           <a href="/projects/"
-             class="px-3 py-1.5 rounded text-sm transition-colors text-base-content/75 hover:text-base-content">
+             class="px-3 py-1.5 rounded text-sm transition-colors text-base-content/75 hover:text-base-content hover:bg-base-200/60">
             Projects
           </a>
         
@@ -71,7 +73,7 @@
             
           
           <a href="/teaching/"
-             class="px-3 py-1.5 rounded text-sm transition-colors text-base-content/75 hover:text-base-content">
+             class="px-3 py-1.5 rounded text-sm transition-colors text-base-content/75 hover:text-base-content hover:bg-base-200/60">
             Teaching
           </a>
         
@@ -80,7 +82,7 @@
             
           
           <a href="/blog/"
-             class="px-3 py-1.5 rounded text-sm transition-colors text-base-content/75 hover:text-base-content">
+             class="px-3 py-1.5 rounded text-sm transition-colors text-base-content/75 hover:text-base-content hover:bg-base-200/60">
             Blog
           </a>
         
@@ -89,7 +91,7 @@
             
           
           <a href="/collaborate/"
-             class="px-3 py-1.5 rounded text-sm transition-colors text-primary font-medium">
+             class="px-3 py-1.5 rounded text-sm transition-colors text-primary font-medium bg-primary/10">
             Collaborate
           </a>
         
@@ -151,7 +153,7 @@
 
 <div class="max-w-4xl mx-auto px-6 py-20">
 
-  <div class="mb-14">
+  <div class="mb-10">
     <div class="eyebrow mb-4">Contact</div>
     <h1 class="font-heading font-semibold text-3xl md:text-4xl tracking-tight text-base-content leading-tight">Collaborate</h1>
     <p class="mt-3 text-sm text-base-content/70 max-w-lg leading-relaxed font-light">
@@ -159,7 +161,47 @@
     </p>
   </div>
 
-  <div class="border-t border-base-300 pt-10">
+  <!-- Contact methods -->
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+
+    <a href="mailto:deveshbhaskaran@gmail.com"
+       class="card-elevated section-panel group flex items-center gap-3 hover:border-accent/40 transition-all duration-200">
+      <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-lg bg-accent/12 text-accent">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <div>
+        <div class="text-xs font-mono text-base-content/50 mb-0.5">Email</div>
+        <div class="text-sm font-medium text-base-content group-hover:text-accent transition-colors">deveshbhaskaran@gmail.com</div>
+      </div>
+    </a>
+
+    <a href="https://www.linkedin.com/in/devesh-bhaskaran" target="_blank" rel="noopener"
+       class="card-elevated section-panel group flex items-center gap-3 hover:border-primary/40 transition-all duration-200">
+      <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-lg bg-primary/10 text-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </div>
+      <div>
+        <div class="text-xs font-mono text-base-content/50 mb-0.5">LinkedIn</div>
+        <div class="text-sm font-medium text-base-content group-hover:text-primary transition-colors">devesh-bhaskaran</div>
+      </div>
+    </a>
+
+    <a href="https://scholar.google.com/citations?user=gabaBU8AAAAJ" target="_blank" rel="noopener"
+       class="card-elevated section-panel group flex items-center gap-3 hover:border-teal/40 transition-all duration-200">
+      <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-lg bg-teal/10 text-teal">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 0 1 .665 6.479A11.952 11.952 0 0 0 12 20.055a11.952 11.952 0 0 0-6.824-2.998 12.078 12.078 0 0 1 .665-6.479L12 14z"/></svg>
+      </div>
+      <div>
+        <div class="text-xs font-mono text-base-content/50 mb-0.5">Scholar</div>
+        <div class="text-sm font-medium text-base-content group-hover:text-teal transition-colors">Google Scholar ↗</div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Prose content -->
+  <div class="section-panel">
+    <div class="eyebrow eyebrow-accent eyebrow-accent-plum mb-6">Get in touch</div>
     <div class="prose prose-sm md:prose-base max-w-3xl text-justify
                 prose-a:text-primary prose-a:no-underline hover:prose-a:underline
                 prose-headings:font-heading prose-headings:font-semibold prose-headings:tracking-tight
