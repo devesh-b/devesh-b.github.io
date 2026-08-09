@@ -12,6 +12,17 @@
 
 <article class="max-w-4xl mx-auto px-6 py-16">
 
+  <!-- Breadcrumb -->
+  <nav aria-label="Breadcrumb" class="mb-8">
+    <ol class="flex items-center gap-1.5 text-xs font-mono text-base-content/40">
+      <li><a href="/" class="hover:text-primary transition-colors">Home</a></li>
+      <li aria-hidden="true" class="select-none">›</li>
+      <li><a href="/blog/" class="hover:text-primary transition-colors">Blog</a></li>
+      <li aria-hidden="true" class="select-none">›</li>
+      <li class="text-base-content/65 truncate max-w-xs">{{ page.title }}</li>
+    </ol>
+  </nav>
+
   <!-- Header -->
   <header class="mb-12 max-w-2xl">
     <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono font-medium mb-4 bg-forest/12 text-forest border border-forest/25">
@@ -86,13 +97,43 @@
   {% endif %}
   {% endif %}
 
-  <!-- Footer nav -->
-  <div class="mt-14 pt-6 border-t border-base-300">
+  <!-- Footer nav + share -->
+  <div class="mt-14 pt-6 border-t border-base-300 flex flex-wrap items-center justify-between gap-4">
     <a href="/blog/" class="text-xs font-mono text-primary/85 hover:text-primary transition-colors">
       ← back to all posts
     </a>
+    <div class="flex items-center gap-4">
+      <span class="text-xs font-mono text-base-content/35">share</span>
+      <a id="share-x" href="#" target="_blank" rel="noopener"
+         class="text-xs font-mono text-base-content/45 hover:text-base-content transition-colors">twitter/x ↗</a>
+      <a id="share-linkedin" href="#" target="_blank" rel="noopener"
+         class="text-xs font-mono text-base-content/45 hover:text-base-content transition-colors">linkedin ↗</a>
+    </div>
   </div>
+  <script>
+    (function() {
+      var url = encodeURIComponent(window.location.href);
+      var title = encodeURIComponent(document.title);
+      var x = document.getElementById('share-x');
+      var li = document.getElementById('share-linkedin');
+      if (x) x.href = 'https://twitter.com/intent/tweet?text=' + title + '&url=' + url;
+      if (li) li.href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + url;
+    })();
+  </script>
 
 </article>
 
+{% block jsonld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | tojson }},
+  "author": {"@type": "Person", "name": "Devesh Bhaskaran", "url": "{{ site.base_url }}/"},
+  "datePublished": "{{ page.date }}",
+  "url": "{{ site.base_url }}{{ page.url }}/",
+  "description": {{ (page.description | default('')) | tojson }}
+}
+</script>
+{% endblock %}
 {% endblock %}

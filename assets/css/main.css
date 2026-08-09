@@ -511,6 +511,69 @@ html {
   color: var(--color-primary);
 }
 
+/* ── Nav link slide-underline on hover ──────────────────────── */
+.nav-link {
+  position: relative;
+}
+.nav-link:not(.nav-active)::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  width: 0;
+  height: 1.5px;
+  background: var(--color-primary);
+  border-radius: 1px;
+  transition: width 0.22s ease, left 0.22s ease;
+}
+.nav-link:not(.nav-active):hover::after {
+  width: calc(100% - 24px);
+  left: 12px;
+}
+
+/* ── Print styles ────────────────────────────────────────────── */
+@media print {
+  #scroll-progress, #cursor-halo, #grain, #back-to-top,
+  #search-modal, #drawer-backdrop, #mobile-drawer,
+  header, footer { display: none !important; }
+
+  html { scroll-behavior: auto; }
+  body { background: white !important; color: black !important; font-size: 11pt; }
+  main { padding-top: 0 !important; }
+
+  .navbar-blur { display: none !important; }
+
+  .section-panel {
+    background: none !important;
+    border: 1px solid #ddd !important;
+    break-inside: avoid;
+  }
+
+  .card-elevated {
+    box-shadow: none !important;
+    break-inside: avoid;
+    border: 1px solid #ddd !important;
+  }
+
+  .card-glow::after { display: none !important; }
+
+  /* Show full URLs for external links */
+  a[href^="http"]::after,
+  a[href^="https"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+    color: #555;
+    word-break: break-all;
+  }
+  a[href^="/"]::after,
+  a[href^="#"]::after,
+  a[href^="mailto"]::after { content: none; }
+
+  /* Suppress decorative link suffixes on badges and pills */
+  .pub-abbr::after, .tag-pill::after,
+  [class*="px-1.5"]::after { content: none !important; }
+}
+
 /* ── List hover indent transition ───────────────────────────── */
 .list-row-hover {
   transition: padding-left 0.15s ease;

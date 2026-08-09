@@ -32,6 +32,27 @@
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="stylesheet" href="/assets/css/syntax.css">
   <link rel="alternate" type="application/atom+xml" title="{{ site.site_name }}" href="/feed.xml">
+  <link rel="canonical" href="{{ site.base_url }}{{ page.url | default('/') }}">
+  <meta name="theme-color" content="#F0EEE8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#131313" media="(prefers-color-scheme: dark)">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Devesh Bhaskaran",
+    "url": "{{ site.base_url }}/",
+    "email": "deveshbhaskaran@gmail.com",
+    "jobTitle": "Digital Design Engineer",
+    "worksFor": {"@type": "Organization", "name": "Analog Devices"},
+    "alumniOf": {"@type": "CollegeOrUniversity", "name": "PES University"},
+    "sameAs": [
+      "https://github.com/devesh-b",
+      "https://www.linkedin.com/in/devesh-bhaskaran",
+      "https://scholar.google.com/citations?user=gabaBU8AAAAJ"
+    ]
+  }
+  </script>
+  {% block jsonld %}{% endblock %}
 </head>
 <body class="min-h-screen bg-base-100 text-base-content antialiased">
 
@@ -80,7 +101,7 @@
             {% set is_active = (current_url == norm or current_url == norm + '/' or (norm and current_url.startswith(norm + '/'))) %}
           {% endif %}
           <a href="{{ item.url }}"
-             class="px-3 py-1.5 rounded text-sm transition-colors {% if is_active %}text-primary font-medium bg-primary/10{% else %}text-base-content/75 hover:text-base-content hover:bg-base-200/60{% endif %}">
+             class="nav-link {% if is_active %}nav-active{% endif %} px-3 py-1.5 rounded text-sm transition-colors {% if is_active %}text-primary font-medium bg-primary/10{% else %}text-base-content/75 hover:text-base-content hover:bg-base-200/60{% endif %}">
             {{ item.name }}
           </a>
         {% endfor %}

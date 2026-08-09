@@ -3,6 +3,17 @@
 
 <article class="max-w-4xl mx-auto px-6 py-20">
 
+  <!-- Breadcrumb -->
+  <nav aria-label="Breadcrumb" class="mb-8">
+    <ol class="flex items-center gap-1.5 text-xs font-mono text-base-content/40">
+      <li><a href="/" class="hover:text-primary transition-colors">Home</a></li>
+      <li aria-hidden="true" class="select-none">›</li>
+      <li><a href="/projects/" class="hover:text-primary transition-colors">Projects</a></li>
+      <li aria-hidden="true" class="select-none">›</li>
+      <li class="text-base-content/65 truncate max-w-xs">{{ page.title }}</li>
+    </ol>
+  </nav>
+
   <!-- Header -->
   {% set cat = page.category | default("Project") %}
   {% set cat_color = 'accent' if ('IC' in cat or 'Analog' in cat) else ('primary' if 'Digital' in cat else 'plum') %}
@@ -90,4 +101,17 @@
 
 </article>
 
+{% block jsonld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.base_url }}/"},
+    {"@type": "ListItem", "position": 2, "name": "Projects", "item": "{{ site.base_url }}/projects/"},
+    {"@type": "ListItem", "position": 3, "name": {{ page.title | tojson }}, "item": "{{ site.base_url }}{{ page.url }}/"}
+  ]
+}
+</script>
+{% endblock %}
 {% endblock %}

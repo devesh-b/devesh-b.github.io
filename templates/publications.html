@@ -109,4 +109,27 @@
 
 </div>
 
+{% block jsonld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Publications by Devesh Bhaskaran",
+  "itemListElement": [
+    {% for pub in page.publications %}{
+      "@type": "ListItem",
+      "position": {{ loop.index }},
+      "item": {
+        "@type": "ScholarlyArticle",
+        "headline": {{ pub.title | tojson }},
+        "author": {"@type": "Person", "name": "Devesh Bhaskaran"},
+        "datePublished": "{{ pub.year }}-01-01",
+        "isPartOf": {"@type": "Event", "name": {{ pub.venue | tojson }}}
+        {% if pub.doi %},"url": "https://doi.org/{{ pub.doi }}"{% endif %}
+      }
+    }{% if not loop.last %},{% endif %}{% endfor %}
+  ]
+}
+</script>
+{% endblock %}
 {% endblock %}
