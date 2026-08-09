@@ -45,20 +45,23 @@
   </section>
 
   <!-- ── About ─────────────────────────────────────────────────── -->
-  <section class="pb-10 border-t border-base-300 pt-8">
-    <div class="eyebrow mb-4">About</div>
-    <div class="prose prose-sm md:prose-base max-w-none leading-relaxed text-justify
-                prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-                prose-headings:text-left
-                dark:prose-invert">
-      {{ content }}
+  <section class="pb-4 pt-6">
+    <div class="section-panel">
+      <div class="eyebrow eyebrow-accent mb-4">About</div>
+      <div class="prose prose-sm md:prose-base max-w-none leading-relaxed text-justify
+                  prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+                  prose-headings:text-left
+                  dark:prose-invert">
+        {{ content }}
+      </div>
     </div>
   </section>
 
   <!-- ── Research Interests ───────────────────────────────────── -->
-  <section class="pb-10 border-t border-base-300 pt-8">
-    <div class="eyebrow mb-5">Research Interests</div>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+  <section class="pb-4">
+    <div class="section-panel">
+      <div class="eyebrow eyebrow-accent mb-5">Research Interests</div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
 
       <!-- Analog & RF IC Design -->
       <div class="card-elevated group border border-base-300 rounded-xl p-5 bg-base-200/50 hover:border-primary/50">
@@ -130,85 +133,92 @@
         <p class="text-xs text-base-content/65 leading-relaxed">RF signal processing, learning-based demodulation, SATCOM system modelling.</p>
       </div>
 
+      </div>
     </div>
   </section>
 
   <!-- ── Journey (timeline) ────────────────────────────────────── -->
   {% if page.news %}
-  <section class="pb-10 border-t border-base-300 pt-8">
-    <div class="eyebrow mb-5">Journey</div>
-    <div class="pl-4 timeline-track space-y-8">
-      {% for item in page.news %}
-      <div class="relative pl-6">
-        <div class="absolute -left-[5px] top-[6px] w-2.5 h-2.5 rounded-full bg-primary border-2 border-base-100"></div>
-        <div class="font-mono text-xs text-base-content/60 uppercase tracking-wider mb-1">{{ item.date }}</div>
-        <p class="text-sm text-base-content/85 leading-relaxed">
-          {{ item.text }}
-          {% if item.links %}
-          —
-          {% for lnk in item.links %}
-          <a href="{{ lnk.url }}" target="_blank" rel="noopener"
-             class="text-primary hover:underline">{{ lnk.text }}</a>{% if not loop.last %},{% endif %}
-          {% endfor %}
-          {% endif %}
-        </p>
+  <section class="pb-4">
+    <div class="section-panel">
+      <div class="eyebrow eyebrow-accent mb-5">Journey</div>
+      <div class="pl-4 timeline-track space-y-8">
+        {% for item in page.news %}
+        <div class="relative pl-6">
+          <div class="absolute -left-[5px] top-[6px] w-2.5 h-2.5 rounded-full bg-primary border-2 border-base-100"></div>
+          <div class="font-mono text-xs text-base-content/60 uppercase tracking-wider mb-1">{{ item.date }}</div>
+          <p class="text-sm text-base-content/85 leading-relaxed">
+            {{ item.text }}
+            {% if item.links %}
+            —
+            {% for lnk in item.links %}
+            <a href="{{ lnk.url }}" target="_blank" rel="noopener"
+               class="text-primary hover:underline">{{ lnk.text }}</a>{% if not loop.last %},{% endif %}
+            {% endfor %}
+            {% endif %}
+          </p>
+        </div>
+        {% endfor %}
       </div>
-      {% endfor %}
     </div>
   </section>
   {% endif %}
 
   <!-- ── Selected publications ────────────────────────────────── -->
   {% if page.featured_pubs %}
-  <section class="pb-10 border-t border-base-300 pt-8">
-    <div class="eyebrow mb-5">Selected Work</div>
-    <div class="border-t border-base-300/60">
-      {% for pub in page.featured_pubs %}
-      <a href="https://doi.org/{{ pub.doi }}" target="_blank" rel="noopener"
-         class="group flex items-start gap-5 py-5 border-b border-base-300/60 hover:pl-1 hover:bg-base-200/30 transition-all duration-200">
-        <span class="pub-abbr text-primary/75 mt-0.5 flex-shrink-0 w-14">{{ pub.abbr }}</span>
-        <div class="min-w-0">
-          <p class="text-sm font-medium text-base-content leading-snug group-hover:text-primary transition-colors">
-            {{ pub.title }}
-          </p>
-          <div class="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-base-content/55">
-            <span>{{ pub.venue }}</span>
-            <span class="hidden sm:inline opacity-40">·</span>
-            <span>{{ pub.coauthors }}</span>
+  <section class="pb-4">
+    <div class="section-panel">
+      <div class="eyebrow eyebrow-accent mb-5">Selected Work</div>
+      <div class="border-t border-base-300/60">
+        {% for pub in page.featured_pubs %}
+        <a href="https://doi.org/{{ pub.doi }}" target="_blank" rel="noopener"
+           class="group flex items-start gap-5 py-5 border-b border-base-300/60 hover:pl-1 hover:-mx-1 hover:px-1 hover:bg-base-200/40 rounded transition-all duration-200">
+          <span class="pub-abbr text-primary/75 mt-0.5 flex-shrink-0 w-14">{{ pub.abbr }}</span>
+          <div class="min-w-0">
+            <p class="text-sm font-medium text-base-content leading-snug group-hover:text-primary transition-colors">
+              {{ pub.title }}
+            </p>
+            <div class="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-base-content/55">
+              <span>{{ pub.venue }}</span>
+              <span class="hidden sm:inline opacity-40">·</span>
+              <span>{{ pub.coauthors }}</span>
+            </div>
           </div>
-        </div>
-      </a>
-      {% endfor %}
-    </div>
-    <div class="mt-5">
-      <a href="/publications/" class="text-xs font-mono text-primary/85 hover:text-primary transition-colors">
-        view all publications →
-      </a>
+        </a>
+        {% endfor %}
+      </div>
+      <div class="mt-5">
+        <a href="/publications/" class="text-xs font-mono text-primary/85 hover:text-primary transition-colors">
+          view all publications →
+        </a>
+      </div>
     </div>
   </section>
   {% endif %}
 
   <!-- ── Latest blog post ──────────────────────────────────────── -->
   {% if posts %}
-  <section class="pb-10 border-t border-base-300 pt-8">
-    <div class="eyebrow mb-5">From the Blog</div>
-    {% set latest = posts[0] %}
-    <a href="{{ latest.url }}/"
-       class="group flex items-baseline gap-6 py-4 border-b border-base-300/60 hover:pl-1 hover:bg-base-200/30 transition-all duration-200">
-      <span class="font-mono text-xs text-base-content/50 flex-shrink-0 w-24 tabular-nums">{{ latest.date }}</span>
-      <div class="min-w-0">
-        <h3 class="font-heading font-medium text-base text-base-content group-hover:text-primary transition-colors leading-snug">
-          {{ latest.title }}
-        </h3>
-        {% if latest.description %}
-        <p class="mt-1 text-sm text-base-content/65 leading-relaxed line-clamp-1">{{ latest.description }}</p>
-        {% endif %}
-      </div>
-    </a>
-    <div class="mt-5">
-      <a href="/blog/" class="text-xs font-mono text-primary/85 hover:text-primary transition-colors">
-        browse all posts →
+  <section class="pb-10">
+    <div class="section-panel">
+      <div class="eyebrow eyebrow-accent mb-5">From the Blog</div>
+      {% set latest = posts[0] %}
+      <a href="{{ latest.url }}/"
+         class="group flex items-baseline gap-6 py-4 border-b border-base-300/60 hover:pl-1 hover:-mx-1 hover:px-1 hover:bg-base-200/40 rounded transition-all duration-200">
+        <span class="font-mono text-xs text-base-content/50 flex-shrink-0 w-24 tabular-nums">{{ latest.date }}</span>
+        <div class="min-w-0">
+          <h3 class="font-heading font-medium text-base text-base-content group-hover:text-primary transition-colors leading-snug">
+            {{ latest.title }}
+          </h3>
+          {% if latest.description %}
+          <p class="mt-1 text-sm text-base-content/65 leading-relaxed line-clamp-1">{{ latest.description }}</p>
+          {% endif %}
+        </div>
       </a>
+      <div class="mt-5">
+        <a href="/blog/" class="text-xs font-mono text-primary/85 hover:text-primary transition-colors">
+          browse all posts →
+        </a>
+      </div>
     </div>
   </section>
   {% endif %}
