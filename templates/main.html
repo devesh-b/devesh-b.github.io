@@ -77,6 +77,52 @@
     </div>
   </section>
 
+  <!-- ── Education ────────────────────────────────────────────── -->
+  {% if page.education %}
+  <section class="pb-4">
+    <div class="section-panel">
+      <div class="eyebrow eyebrow-accent mb-5">Education</div>
+      <div class="space-y-3">
+        {% for edu in page.education %}
+        <a href="{{ edu.url }}" target="_blank" rel="noopener noreferrer"
+           class="group flex items-start gap-4 p-4 rounded-xl border
+                  {% if edu.status == 'upcoming' %}border-accent/35 bg-accent/5 hover:border-accent/60
+                  {% else %}border-base-300/60 bg-base-200/30 hover:border-base-300{% endif %}
+                  transition-all duration-200">
+          <!-- Degree glyph -->
+          <div class="flex-shrink-0 mt-0.5 w-8 h-8 rounded-lg flex items-center justify-center
+                      {% if edu.status == 'upcoming' %}bg-accent/15 text-accent{% else %}bg-primary/12 text-primary{% endif %}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4" aria-hidden="true">
+              <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838l-2.727 1.17 1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+              <path d="M3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zm5.99 7.176A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+            </svg>
+          </div>
+          <!-- Text -->
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-center gap-2 mb-0.5">
+              <span class="font-heading font-semibold text-sm text-base-content group-hover:text-primary transition-colors">
+                {{ edu.institution }}
+              </span>
+              {% if edu.status == 'upcoming' %}
+              <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono bg-accent/15 text-accent leading-none">
+                <span class="w-1 h-1 rounded-full bg-accent animate-pulse"></span>upcoming
+              </span>
+              {% endif %}
+            </div>
+            <div class="text-xs text-base-content/80 leading-snug">{{ edu.degree }}</div>
+            <div class="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[11px] font-mono text-base-content/45">
+              <span>{{ edu.period }}</span>
+              {% if edu.grade %}<span class="hidden sm:inline opacity-50">·</span><span>{{ edu.grade }}</span>{% endif %}
+              {% if edu.honors %}<span class="hidden sm:inline opacity-50">·</span><span>{{ edu.honors }}</span>{% endif %}
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
   <!-- ── Research Interests ───────────────────────────────────── -->
   <section class="pb-4">
     <div class="section-panel">

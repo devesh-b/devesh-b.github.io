@@ -14,7 +14,7 @@ social_links:
   - {name: ORCID, url: "https://orcid.org/0009-0005-4443-8244", icon: orcid}
 news:
   - date: "Oct 2026"
-    text: "Joining Imperial College London to read for the MSc in Analogue and Digital Circuit Design (ADCD)."
+    text: "Joining Imperial College London for the MSc in Analogue and Digital Circuit Design (ADCD)."
   - date: "Oct 2025"
     text: "Two papers published in IEEE — APCCAS on a low phase-noise quadrature DCO in 55nm CMOS, and NKCon on VCO-based ADC architectures."
     links:
@@ -45,13 +45,28 @@ skills:
   - category: Programming & Tools
     color: teal
     tools: ["Python", "MATLAB", "C", "Git", "Docker", "Linux"]
+education:
+  - institution: "Imperial College London"
+    degree: "MSc Analogue and Digital Circuit Design (ADCD)"
+    dept: "Department of Electrical and Electronic Engineering"
+    period: "Oct 2026 – present"
+    status: "upcoming"
+    url: "https://www.imperial.ac.uk/study/courses/postgraduate-taught/analogue-digital-circuit-design/"
+  - institution: "PES University"
+    degree: "B.E. Electronics & Communication Engineering"
+    dept: "Department of ECE"
+    period: "2021 – 2025"
+    grade: "GPA 9.32 / 10"
+    honors: "Silver Medal · Best Outgoing Student, ECE"
+    status: "completed"
+    url: "https://pes.edu/"
 stats:
   publications: 2
   projects: 12
   roles: "ADI · PESU"
 ---
 
-I'm a Digital Design Engineer at [Analog Devices India](https://www.analog.com/), working on PHYs, PLLs, and timing systems for the next generation of battery-management ICs in electric vehicles. The work spans 10BASE-T1S PHY design, PLLs, GPT, UART, and PWM architectures, with a focus on functional safety and system-level timing analysis. In October 2026 I'll be joining [Imperial College London](https://www.imperial.ac.uk/study/courses/postgraduate-taught/analogue-digital-circuit-design/) to read for the MSc in Analogue and Digital Circuit Design (ADCD).
+I'm a Digital Design Engineer at [Analog Devices India](https://www.analog.com/), working on PHYs, PLLs, and timing systems for the next generation of battery-management ICs in electric vehicles. The work spans 10BASE-T1S PHY design, PLLs, GPT, UART, and PWM architectures, with a focus on functional safety and system-level timing analysis. In October 2026 I'll be joining [Imperial College London](https://www.imperial.ac.uk/study/courses/postgraduate-taught/analogue-digital-circuit-design/) for the MSc in Analogue and Digital Circuit Design (ADCD).
 
 I trained as an Electronics and Communication Engineer at [PES University](https://pes.edu/), where I graduated in August 2025 with a GPA of 9.32/10. I was awarded the Silver Medal for ranking 9th in the university and named Best Outgoing Student of the ECE department. Alongside coursework, I held two teaching assistantships — one on RF Microelectronics, where I built Spectre RF simulation workflows for oscillator design, and one on Computer Organization, where I taught RISC-V assembly and helped students build single-cycle RISC-V processors.
 
