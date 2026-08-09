@@ -1,81 +1,42 @@
-# Agent Guidelines for al-folio
+# Agent Guidelines — devesh-b.github.io
 
-A simple, clean, and responsive Jekyll theme for academics.
+Personal academic portfolio for Devesh Bhaskaran. Custom Python SSG (mettu) + Jinja2 templates, Tailwind v4 + DaisyUI v5, built via Vite.
 
-## Quick Links by Role
-
-- **Are you a coding agent?** → Read [`.github/copilot-instructions.md`](.github/copilot-instructions.md) first (tech stack, build, CI/CD, common pitfalls & solutions)
-- **Customizing the site?** → See [`.github/agents/customize.agent.md`](.github/agents/customize.agent.md)
-- **Writing documentation?** → See [`.github/agents/docs.agent.md`](.github/agents/docs.agent.md)
-- **Need setup/deployment help?** → [INSTALL.md](INSTALL.md)
-- **Troubleshooting & FAQ?** → [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
-- **Customization & theming?** → [CUSTOMIZE.md](CUSTOMIZE.md)
-- **Quick 5-min start?** → [QUICKSTART.md](QUICKSTART.md)
-
-## Essential Commands
-
-### Local Development (Docker)
-
-The recommended approach is using Docker.
+## Key Commands
 
 ```bash
-# Initial setup & start dev server
-docker compose pull && docker compose up
-# Site runs at http://localhost:8080
+# Full production build (SSG → Vite → dist/)
+npm run build
 
-# Rebuild after changing dependencies or Dockerfile
-docker compose up --build
+# SSG only (fast iteration on templates/content)
+python3 src/main.py
 
-# Stop containers and free port 8080
-docker compose down
+# Dev server with HMR
+npm run dev
 ```
 
-### Pre-Commit Checklist
+## File Layout
 
-Before every commit, you **must** run these steps:
+| Path | Purpose |
+|---|---|
+| `content/` | Markdown + YAML front matter — pages, projects, blog posts |
+| `templates/` | Jinja2 HTML templates |
+| `assets/css/main.css` | All custom CSS (Tailwind theme, components, animations) |
+| `src/main.py` | SSG entry point — renders templates → static HTML |
+| `_config.yml` | Site-wide config (name, URL, social links, nav, etc.) |
 
-1.  **Format Code:**
-    ```bash
-    # (First time only)
-    npm install --save-dev prettier @shopify/prettier-plugin-liquid
-    # Format all files
-    npx prettier . --write
-    ```
-2.  **Build Locally & Verify:**
+## Stack
 
-    ```bash
-    # Rebuild the site
-    docker compose up --build
+- **SSG**: `src/main.py` renders Jinja2 + YAML/Markdown → root HTML; `npm run build` = Vite → SSG → Rollup → `dist/`; `closeBundle()` copies static assets
+- **CSS**: Tailwind v4 (CSS-first, no `tailwind.config.js`); DaisyUI v5; custom palette via `@theme {}` block
+- **Themes**: `academic-light` / `academic-dark` on `data-theme` attribute; dark selector: `@variant dark ([data-theme="academic-dark"] &)`
+- **Deploy**: GitHub Actions pushes `dist/` to `gh-pages` on every push to `main`
 
-    # Verify by visiting http://localhost:8080.
-    # Check navigation, pages, images, and dark mode.
-    ```
+## Common Patterns & Gotchas
 
-## Critical Configuration
-
-When modifying `_config.yml`, these **must be updated together**:
-
-- **Personal site:** `url: https://username.github.io` + `baseurl:` (empty)
-- **Project site:** `url: https://username.github.io` + `baseurl: /repo-name/`
-- **YAML errors:** Quote strings with special characters: `title: "My: Cool Site"`
-
-## Development Workflow
-
-- **Git & Commits:** For commit message format and Git practices, see [.github/GIT_WORKFLOW.md](.github/GIT_WORKFLOW.md).
-- **Code-Specific Instructions:** Consult the relevant instruction file for your code type.
-
-| File Type                                     | Instruction File                                                                                |
-| --------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Markdown content (`_posts/`, `_pages/`, etc.) | [markdown-content.instructions.md](.github/instructions/markdown-content.instructions.md)       |
-| YAML config (`_config.yml`, `_data/`)         | [yaml-configuration.instructions.md](.github/instructions/yaml-configuration.instructions.md)   |
-| BibTeX (`_bibliography/`)                     | [bibtex-bibliography.instructions.md](.github/instructions/bibtex-bibliography.instructions.md) |
-| Liquid templates (`_includes/`, `_layouts/`)  | [liquid-templates.instructions.md](.github/instructions/liquid-templates.instructions.md)       |
-| JavaScript (`_scripts/`)                      | [javascript-scripts.instructions.md](.github/instructions/javascript-scripts.instructions.md)   |
-
-## Common Issues
-
-For troubleshooting, see:
-
-- [Common Pitfalls & Workarounds](.github/copilot-instructions.md#common-pitfalls--workarounds) in copilot-instructions.md
-- [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for detailed solutions
-- [GitHub Issues](https://github.com/alshedivat/al-folio/issues) to search for your specific problem.
+- **Literal `{}` in Jinja2 output**: use `{{ '{' }}` and `{{ '}' }}` — needed for BibTeX block output
+- **Loop-scoped mutation**: use `{% set ns = namespace(i=0) %}` + `{% set ns.i = ns.i + 1 %}` inside loops
+- **Custom colours**: `--color-teal`, `--color-plum`, `--color-forest` in `@theme {}`; dark overrides in `[data-theme="academic-dark"]`
+- **Per-page JSON-LD**: `{% block jsonld %}{% endblock %}` in `base.html`, overridden per template
+- **`.card-glow > * { position: relative; z-index: 1 }`** — child elements that need `position: absolute` must use `!important` to override this rule
+- **Animated CSS custom properties**: use `@property` declarations (Houdini) for animating values like `--ring-angle` via `@keyframes`
