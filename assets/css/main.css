@@ -10,13 +10,13 @@
 @theme {
   --color-teal: #2D7472;
   --color-plum: #6B3A5E;
-  --color-forest: #3A6B4A;
+  --color-forest: #4A8C65;
 }
 
 [data-theme="academic-dark"] {
   --color-teal: #4BA8A4;
   --color-plum: #B06A98;
-  --color-forest: #5AA870;
+  --color-forest: #6CB882;
 }
 
 /* ── Cursor halo ─────────────────────────────────────────────── */
@@ -28,7 +28,7 @@
   z-index: 9998;
   background: radial-gradient(
     140px circle at var(--halo-x, 50vw) var(--halo-y, 50vh),
-    rgba(175, 130, 60, 0.13),
+    rgba(45, 106, 79, 0.10),
     transparent 65%
   );
 }
@@ -54,7 +54,7 @@
   inset: 0;
   background: radial-gradient(
     200px circle at var(--card-x, 50%) var(--card-y, 50%),
-    rgba(59, 74, 107, 0.07),
+    rgba(44, 62, 80, 0.06),
     transparent 70%
   );
   opacity: 0;
@@ -281,7 +281,7 @@ html {
 }
 
 ::selection {
-  background: rgba(59, 74, 107, 0.2);
+  background: rgba(44, 62, 80, 0.2);
 }
 
 [data-theme="academic-dark"] ::selection {
@@ -290,7 +290,7 @@ html {
 
 /* ── Navbar backdrop blur fallback ───────────────────────────── */
 .navbar-blur {
-  background: rgba(237, 228, 216, 0.90);
+  background: rgba(240, 238, 232, 0.90);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }

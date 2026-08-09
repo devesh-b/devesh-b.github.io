@@ -11,17 +11,17 @@ theme:
   custom:
     academic-light: |
       color-scheme: light;
-      --color-base-100: #EDE4D8;
-      --color-base-200: #DDD2C3;
-      --color-base-300: #B8A896;
+      --color-base-100: #F0EEE8;
+      --color-base-200: #E2DDD6;
+      --color-base-300: #C5C2BB;
       --color-base-content: #1A1A1A;
-      --color-primary: #3B4A6B;
+      --color-primary: #2C3E50;
       --color-primary-content: #FFFFFF;
-      --color-secondary: #6B7A9A;
+      --color-secondary: #4A5A6A;
       --color-secondary-content: #FFFFFF;
-      --color-accent: #B5621E;
+      --color-accent: #2D6A4F;
       --color-accent-content: #FFFFFF;
-      --color-neutral: #DAD0C4;
+      --color-neutral: #D8D4CE;
       --color-neutral-content: #1A1A1A;
       --color-info: oklch(70% 0.10 220);
       --color-info-content: oklch(20% 0.05 220);
@@ -47,8 +47,8 @@ theme:
       --color-primary-content: #0D1117;
       --color-secondary: #5A6A9A;
       --color-secondary-content: #E8E4DD;
-      --color-accent: #D4884A;
-      --color-accent-content: #1A1A1A;
+      --color-accent: #5FAD72;
+      --color-accent-content: #0D1A12;
       --color-neutral: #282828;
       --color-neutral-content: #E8E4DD;
       --color-info: oklch(70% 0.10 220);
