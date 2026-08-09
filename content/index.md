@@ -13,6 +13,8 @@ social_links:
   - {name: Google Scholar, url: "https://scholar.google.com/citations?user=gabaBU8AAAAJ", icon: scholar}
   - {name: ORCID, url: "https://orcid.org/0009-0005-4443-8244", icon: orcid}
 news:
+  - date: "Oct 2026"
+    text: "Joining Imperial College London to read for the MSc in Analogue and Digital Integrated Circuits (ADIC)."
   - date: "Oct 2025"
     text: "Two papers published in IEEE — APCCAS on a low phase-noise quadrature DCO in 55nm CMOS, and NKCon on VCO-based ADC architectures."
     links:
@@ -49,13 +51,13 @@ stats:
   roles: "ADI · PESU"
 ---
 
-I'm a Digital Design Engineer at [Analog Devices India](https://www.analog.com/), working on PHYs, PLLs, and timing systems for the next generation of battery-management ICs in electric vehicles. The work spans 10BASE-T1S PHY design, PLLs, GPT, UART, and PWM architectures, with a focus on functional safety and system-level timing analysis.
+I'm a Digital Design Engineer at [Analog Devices India](https://www.analog.com/), working on PHYs, PLLs, and timing systems for the next generation of battery-management ICs in electric vehicles. The work spans 10BASE-T1S PHY design, PLLs, GPT, UART, and PWM architectures, with a focus on functional safety and system-level timing analysis. In October 2026 I'll be joining [Imperial College London](https://www.imperial.ac.uk/) to read for the MSc in Analogue and Digital Integrated Circuits (ADIC).
 
 I trained as an Electronics and Communication Engineer at [PES University](https://pes.edu/), where I graduated in August 2025 with a GPA of 9.32/10. I was awarded the Silver Medal for ranking 9th in the university and named Best Outgoing Student of the ECE department. Alongside coursework, I held two teaching assistantships — one on RF Microelectronics, where I built Spectre RF simulation workflows for oscillator design, and one on Computer Organization, where I taught RISC-V assembly and helped students build single-cycle RISC-V processors.
 
 ### Research interests
 
-I'm moving toward doctoral research at the intersection of digital, analog, and RF design. The questions that draw me: how do we build resilient, energy-efficient mixed-signal systems for embedded applications without sacrificing performance? What does next-generation timing look like at scales where conventional architectures hit their limits?
+I'm drawn to the intersection of digital, analog, and RF design — and the MSc at Imperial is a step toward research at that boundary. The questions that interest me: how do we build resilient, energy-efficient mixed-signal systems for embedded applications without sacrificing performance? What does next-generation timing look like at scales where conventional architectures hit their limits?
 
 My published work to date has touched all three corners of this space — low phase-noise quadrature DCOs in 55nm CMOS, VCO-based ADC architectures, and semantic segmentation for person identification. Most recently, I've been working on hardware acceleration of YOLOv8 using algorithmic compression and posit-based approximate computing.
 
