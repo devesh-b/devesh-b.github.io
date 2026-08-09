@@ -63,7 +63,7 @@
 }
 </script>
 
-  <link rel="stylesheet" crossorigin href="/assets/syntax-q9s_ldCj.css">
+  <link rel="stylesheet" crossorigin href="/assets/syntax-BbIBjJGT.css">
 </head>
 <body class="min-h-screen bg-base-100 text-base-content antialiased">
 
@@ -764,6 +764,21 @@
           var r = card.getBoundingClientRect();
           card.style.setProperty('--card-x', (e.clientX - r.left) + 'px');
           card.style.setProperty('--card-y', (e.clientY - r.top) + 'px');
+        });
+      });
+
+      /* Magnetic footer icons */
+      document.querySelectorAll('footer a').forEach(function (icon) {
+        icon.addEventListener('mousemove', function (e) {
+          var r = icon.getBoundingClientRect();
+          var dx = (e.clientX - r.left - r.width / 2) * 0.32;
+          var dy = (e.clientY - r.top - r.height / 2) * 0.32;
+          icon.style.transition = 'transform 0.05s linear';
+          icon.style.transform = 'translate(' + dx + 'px, ' + dy + 'px)';
+        });
+        icon.addEventListener('mouseleave', function () {
+          icon.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          icon.style.transform = 'translate(0, 0)';
         });
       });
     })();
