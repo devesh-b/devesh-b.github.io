@@ -4,9 +4,15 @@
 <article class="max-w-4xl mx-auto px-6 py-20">
 
   <!-- Header -->
+  {% set cat = page.category | default("Project") %}
+  {% set cat_color = 'accent' if ('IC' in cat or 'Analog' in cat) else ('primary' if 'Digital' in cat else 'teal') %}
   <header class="mb-12">
-    <div class="eyebrow mb-4">{{ page.category | default("Project") }}</div>
-    <h1 class="font-heading font-semibold text-3xl md:text-4xl tracking-tight leading-tight text-base-content">
+    <!-- Colored category badge -->
+    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono font-medium mb-4
+                bg-{{ cat_color }}/12 text-{{ cat_color }} border border-{{ cat_color }}/25">
+      {{ cat }}
+    </div>
+    <h1 class="font-heading font-semibold text-3xl md:text-4xl tracking-normal leading-tight text-base-content">
       {{ page.title }}
     </h1>
     {% if page.description %}
@@ -18,19 +24,19 @@
       {% if page.tags %}
       <div class="flex flex-wrap gap-1.5">
         {% for tag in page.tags %}
-        <span class="px-1.5 py-0.5 text-xs font-mono bg-primary/10 text-primary rounded">{{ tag }}</span>
+        <span class="px-1.5 py-0.5 text-xs font-mono bg-{{ cat_color }}/10 text-{{ cat_color }} rounded">{{ tag }}</span>
         {% endfor %}
       </div>
       {% endif %}
       {% if page.link %}
       <a href="{{ page.link }}" target="_blank" rel="noopener"
-         class="font-mono text-xs text-primary/80 hover:text-primary transition-colors">
+         class="font-mono text-xs text-{{ cat_color }}/80 hover:text-{{ cat_color }} transition-colors">
         {% if 'doi.org' in page.link %}doi ↗{% elif 'github.com' in page.link %}github ↗{% else %}link ↗{% endif %}
       </a>
       {% endif %}
       {% if page.doi %}
       <a href="https://doi.org/{{ page.doi }}" target="_blank" rel="noopener"
-         class="font-mono text-xs text-primary/80 hover:text-primary transition-colors">doi ↗</a>
+         class="font-mono text-xs text-{{ cat_color }}/80 hover:text-{{ cat_color }} transition-colors">doi ↗</a>
       {% endif %}
     </div>
   </header>
