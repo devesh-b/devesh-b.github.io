@@ -4,16 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Embedded SoC Design (RV32IM) | Devesh Bhaskaran</title>
-  <meta name="description" content="RISC-V SoC with UART, SPI, and QSPI interfaces validated on FPGA using the SkyWater SKY130A PDK.">
-  <meta property="og:title" content="Embedded SoC Design (RV32IM)">
-  <meta property="og:description" content="RISC-V SoC with UART, SPI, and QSPI interfaces validated on FPGA using the SkyWater SKY130A PDK.">
+  <title>YOLOv8 Hardware Accelerator | Devesh Bhaskaran</title>
+  <meta name="description" content="Investigating algorithmic compression and posit-based approximate computing for energy-efficient hardware acceleration of YOLOv8 object detection inference.">
+  <meta property="og:title" content="YOLOv8 Hardware Accelerator">
+  <meta property="og:description" content="Investigating algorithmic compression and posit-based approximate computing for energy-efficient hardware acceleration of YOLOv8 object detection inference.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://devesh-b.github.io/projects/embedded-soc">
+  <meta property="og:url" content="https://devesh-b.github.io/projects/yolov8-accelerator">
   <meta property="og:image" content="https://devesh-b.github.io/assets/img/prof_pic.jpg">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Embedded SoC Design (RV32IM)">
-  <meta name="twitter:description" content="RISC-V SoC with UART, SPI, and QSPI interfaces validated on FPGA using the SkyWater SKY130A PDK.">
+  <meta name="twitter:title" content="YOLOv8 Hardware Accelerator">
+  <meta name="twitter:description" content="Investigating algorithmic compression and posit-based approximate computing for energy-efficient hardware acceleration of YOLOv8 object detection inference.">
   <meta name="twitter:image" content="https://devesh-b.github.io/assets/img/prof_pic.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +31,7 @@
   </script>
 
   <link rel="alternate" type="application/atom+xml" title="Devesh Bhaskaran" href="data:text/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPGZlZWQgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDUvQXRvbSI+CiAgPHRpdGxlPkRldmVzaCBCaGFza2FyYW48L3RpdGxlPgogIDxzdWJ0aXRsZT5EaWdpdGFsIERlc2lnbiBFbmdpbmVlciBhdCBBbmFsb2cgRGV2aWNlcyBJbmRpYSDigJQgd29ya2luZyBhdCB0aGUgYm91bmRhcnkgd2hlcmUgZGlnaXRhbCwgYW5hbG9nLCBhbmQgUkYgaGF2ZSB0byBsZWFybiB0byBsaXZlIHRvZ2V0aGVyLjwvc3VidGl0bGU+CiAgPGxpbmsgaHJlZj0iaHR0cHM6Ly9kZXZlc2gtYi5naXRodWIuaW8vZmVlZC54bWwiIHJlbD0ic2VsZiIgdHlwZT0iYXBwbGljYXRpb24vYXRvbSt4bWwiLz4KICA8bGluayBocmVmPSJodHRwczovL2RldmVzaC1iLmdpdGh1Yi5pby8iLz4KICA8dXBkYXRlZD4yMDI1LTA1LTAxVDAwOjAwOjAwWjwvdXBkYXRlZD4KICA8aWQ+aHR0cHM6Ly9kZXZlc2gtYi5naXRodWIuaW8vPC9pZD4KICA8YXV0aG9yPgogICAgPG5hbWU+RGV2ZXNoIEJoYXNrYXJhbjwvbmFtZT4KICA8L2F1dGhvcj4KICAKICA8ZW50cnk+CiAgICA8dGl0bGU+U0FUQ09NIHRyYW5zY2VpdmVycyDigJQgaG93IHRoZXkgd29yayBhbmQgd2hlcmUgdGhlIGhhcmQgcHJvYmxlbXMgYXJlPC90aXRsZT4KICAgIDxsaW5rIGhyZWY9Imh0dHBzOi8vZGV2ZXNoLWIuZ2l0aHViLmlvL3Bvc3RzLzIwMjUtMDUtMDEtc2F0Y29tLXRyYW5zY2VpdmVycy8iLz4KICAgIDxpZD5odHRwczovL2RldmVzaC1iLmdpdGh1Yi5pby9wb3N0cy8yMDI1LTA1LTAxLXNhdGNvbS10cmFuc2NlaXZlcnMvPC9pZD4KICAgIDx1cGRhdGVkPjIwMjUtMDUtMDFUMDA6MDA6MDBaPC91cGRhdGVkPgogICAgCiAgICA8c3VtbWFyeT5BIHRlY2huaWNhbCBvdmVydmlldyBvZiBzYXRlbGxpdGUgY29tbXVuaWNhdGlvbiB0cmFuc2NlaXZlciBhcmNoaXRlY3R1cmUsIHdpdGggYSBmb2N1cyBvbiBLYS1iYW5kIHN5c3RlbXMgYW5kIHRoZSBvcGVuIElDIGRlc2lnbiBwcm9ibGVtcyB0aGF0IHN0aWxsIGRvbiYjMzk7dCBoYXZlIGNsZWFuIGFuc3dlcnMuPC9zdW1tYXJ5PgogICAgCiAgICAKICAgIAogICAgPGNhdGVnb3J5IHRlcm09IlJGIi8+CiAgICAKICAgIDxjYXRlZ29yeSB0ZXJtPSJTQVRDT00iLz4KICAgIAogICAgPGNhdGVnb3J5IHRlcm09ImNpcmN1aXRzIi8+CiAgICAKICAgIDxjYXRlZ29yeSB0ZXJtPSJyZXNlYXJjaCIvPgogICAgCiAgICAKICA8L2VudHJ5PgogIAo8L2ZlZWQ+">
-  <link rel="canonical" href="https://devesh-b.github.io/projects/embedded-soc">
+  <link rel="canonical" href="https://devesh-b.github.io/projects/yolov8-accelerator">
   <meta name="theme-color" content="#F0EEE8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#131313" media="(prefers-color-scheme: dark)">
   <script type="application/ld+json">
@@ -59,7 +59,7 @@
   "itemListElement": [
     {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://devesh-b.github.io/"},
     {"@type": "ListItem", "position": 2, "name": "Projects", "item": "https://devesh-b.github.io/projects/"},
-    {"@type": "ListItem", "position": 3, "name": "Embedded SoC Design (RV32IM)", "item": "https://devesh-b.github.io/projects/embedded-soc/"}
+    {"@type": "ListItem", "position": 3, "name": "YOLOv8 Hardware Accelerator", "item": "https://devesh-b.github.io/projects/yolov8-accelerator/"}
   ]
 }
 </script>
@@ -210,7 +210,7 @@
       <li aria-hidden="true" class="select-none">›</li>
       <li><a href="/projects/" class="hover:text-primary transition-colors">Projects</a></li>
       <li aria-hidden="true" class="select-none">›</li>
-      <li class="text-base-content/65 truncate max-w-xs">Embedded SoC Design (RV32IM)</li>
+      <li class="text-base-content/65 truncate max-w-xs">YOLOv8 Hardware Accelerator</li>
     </ol>
   </nav>
 
@@ -220,14 +220,14 @@
   <header class="mb-12">
     <!-- Colored category badge -->
     <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono font-medium mb-4
-                bg-primary/12 text-primary border border-primary/25">
-      Digital Design
+                bg-plum/12 text-plum border border-plum/25">
+      Software & ML
     </div>
     <h1 class="font-heading font-semibold text-3xl md:text-4xl tracking-normal leading-tight text-base-content">
-      Embedded SoC Design (RV32IM)
+      YOLOv8 Hardware Accelerator
     </h1>
     
-    <p class="mt-3 text-base-content/70 text-base leading-relaxed font-light max-w-2xl">RISC-V SoC with UART, SPI, and QSPI interfaces validated on FPGA using the SkyWater SKY130A PDK.</p>
+    <p class="mt-3 text-base-content/70 text-base leading-relaxed font-light max-w-2xl">Investigating algorithmic compression and posit-based approximate computing for energy-efficient hardware acceleration of YOLOv8 object detection inference.</p>
     
 
     <!-- Meta row -->
@@ -235,17 +235,17 @@
       
       <div class="flex flex-wrap gap-1.5">
         
-        <span class="px-1.5 py-0.5 text-xs font-mono bg-primary/10 text-primary rounded">SystemVerilog</span>
+        <span class="px-1.5 py-0.5 text-xs font-mono bg-plum/10 text-plum rounded">Python</span>
         
-        <span class="px-1.5 py-0.5 text-xs font-mono bg-primary/10 text-primary rounded">C</span>
+        <span class="px-1.5 py-0.5 text-xs font-mono bg-plum/10 text-plum rounded">Posit</span>
         
-        <span class="px-1.5 py-0.5 text-xs font-mono bg-primary/10 text-primary rounded">Cadence Design Suite</span>
+        <span class="px-1.5 py-0.5 text-xs font-mono bg-plum/10 text-plum rounded">Approximate Computing</span>
         
-        <span class="px-1.5 py-0.5 text-xs font-mono bg-primary/10 text-primary rounded">RISC-V</span>
+        <span class="px-1.5 py-0.5 text-xs font-mono bg-plum/10 text-plum rounded">FPGA</span>
         
-        <span class="px-1.5 py-0.5 text-xs font-mono bg-primary/10 text-primary rounded">SkyWater SKY130A</span>
+        <span class="px-1.5 py-0.5 text-xs font-mono bg-plum/10 text-plum rounded">Neural Networks</span>
         
-        <span class="px-1.5 py-0.5 text-xs font-mono bg-primary/10 text-primary rounded">FPGA</span>
+        <span class="px-1.5 py-0.5 text-xs font-mono bg-plum/10 text-plum rounded">Hardware Acceleration</span>
         
       </div>
       
@@ -266,88 +266,72 @@
               prose-code:font-mono prose-code:text-primary
               dark:prose-invert">
     <h2 id="overview">Overview</h2>
-<p>A complete embedded SoC built around the <strong>RV32IM</strong> core — the RISC-V base integer ISA plus the M-extension (multiply and divide). The design integrates three peripheral interfaces — UART, SPI, and QSPI — and targets both FPGA validation and physical implementation using the open-source <strong>SkyWater SKY130A PDK</strong> through the Cadence Design Suite flow.</p>
+<p>An ongoing research investigation into hardware-efficient acceleration of <strong>YOLOv8</strong> object detection, targeting FPGA and ASIC deployment. The work explores two complementary techniques: algorithmic compression (pruning, quantisation) and <strong>posit-based approximate arithmetic</strong> as a replacement for IEEE 754 floating-point in inference datapaths.</p>
 <hr />
-<h2 id="system-architecture">System architecture</h2>
+<h2 id="research-direction">Research direction</h2>
+<p>Standard deep learning accelerators rely on IEEE 754 FP32 or INT8 arithmetic. Posit numbers — a proposed replacement for IEEE floats — offer a different accuracy-vs-hardware trade-off:</p>
 <figure>
-<svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;font-family:monospace;font-size:11px;" aria-label="RV32IM SoC block diagram">
-  <!-- CPU core -->
-  <rect x="240" y="80" width="130" height="100" rx="4" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-width="1.8" opacity="0.60"/>
-  <text x="305" y="122" text-anchor="middle" fill="currentColor" opacity="0.65" font-size="11" font-weight="bold">RV32IM</text>
-  <text x="305" y="138" text-anchor="middle" fill="currentColor" opacity="0.45" font-size="9">RV32I base</text>
-  <text x="305" y="151" text-anchor="middle" fill="currentColor" opacity="0.38" font-size="9">+ M-ext (MUL/DIV)</text>
-  <text x="305" y="164" text-anchor="middle" fill="currentColor" opacity="0.30" font-size="8">5-stage pipeline</text>
+<svg viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;font-family:monospace;font-size:11px;" aria-label="Posit vs IEEE float representation trade-off">
+  <!-- Axes -->
+  <line x1="80" y1="20" x2="80" y2="140" stroke="currentColor" stroke-width="1.2" opacity="0.40"/>
+  <line x1="80" y1="140" x2="620" y2="140" stroke="currentColor" stroke-width="1.2" opacity="0.40"/>
+  <text x="350" y="162" text-anchor="middle" fill="currentColor" opacity="0.35" font-size="10">Value magnitude →</text>
+  <text x="40" y="82" text-anchor="middle" fill="currentColor" opacity="0.35" font-size="10" transform="rotate(-90,40,82)">Precision</text>
 
-  <!-- Bus interconnect -->
-  <rect x="200" y="198" width="310" height="18" rx="2" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-width="1.2" opacity="0.40"/>
-  <text x="355" y="211" text-anchor="middle" fill="currentColor" opacity="0.40" font-size="9">Internal bus (memory-mapped peripherals)</text>
-  <line x1="305" y1="180" x2="305" y2="198" stroke="currentColor" stroke-width="1.2" opacity="0.38"/>
+  <!-- IEEE 754 — flat precision across range -->
+  <line x1="90" y1="60" x2="610" y2="60"
+        stroke="currentColor" stroke-width="2" opacity="0.45" stroke-dasharray="6,3"/>
+  <text x="615" y="64" fill="currentColor" opacity="0.42" font-size="9">IEEE 754</text>
+  <text x="615" y="76" fill="currentColor" opacity="0.30" font-size="8">(uniform)</text>
 
-  <!-- Instruction memory -->
-  <rect x="50" y="80" width="110" height="50" rx="3" fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.45"/>
-  <text x="105" y="103" text-anchor="middle" fill="currentColor" opacity="0.50" font-size="10">Instr. Mem</text>
-  <text x="105" y="117" text-anchor="middle" fill="currentColor" opacity="0.32" font-size="8">RV32I program</text>
-  <line x1="160" y1="105" x2="240" y2="115" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
-  <polygon points="237,111 245,115 238,119" fill="currentColor" opacity="0.35"/>
+  <!-- Posit — tapered precision, high near zero -->
+  <polyline points="90,28 200,38 310,60 420,90 530,118 610,136"
+            fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.65" stroke-linejoin="round"/>
+  <text x="615" y="100" fill="currentColor" opacity="0.60" font-size="9">Posit</text>
+  <text x="615" y="112" fill="currentColor" opacity="0.40" font-size="8">(tapered)</text>
 
-  <!-- Data memory -->
-  <rect x="50" y="148" width="110" height="50" rx="3" fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.42"/>
-  <text x="105" y="171" text-anchor="middle" fill="currentColor" opacity="0.45" font-size="10">Data Mem</text>
-  <text x="105" y="185" text-anchor="middle" fill="currentColor" opacity="0.30" font-size="8">Load / Store</text>
-  <line x1="160" y1="173" x2="240" y2="155" stroke="currentColor" stroke-width="1.2" opacity="0.32"/>
-  <polygon points="237,151 245,155 238,159" fill="currentColor" opacity="0.32"/>
-
-  <!-- UART peripheral -->
-  <rect x="510" y="62" width="80" height="44" rx="3" fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.45"/>
-  <text x="550" y="82" text-anchor="middle" fill="currentColor" opacity="0.50" font-size="10">UART</text>
-  <text x="550" y="96" text-anchor="middle" fill="currentColor" opacity="0.28" font-size="8">8N1 · FIFOs</text>
-  <line x1="510" y1="84" x2="430" y2="130" stroke="currentColor" stroke-width="1.1" opacity="0.32"/>
-
-  <!-- SPI peripheral -->
-  <rect x="510" y="120" width="80" height="44" rx="3" fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.40"/>
-  <text x="550" y="140" text-anchor="middle" fill="currentColor" opacity="0.45" font-size="10">SPI</text>
-  <text x="550" y="154" text-anchor="middle" fill="currentColor" opacity="0.26" font-size="8">CPOL/CPHA</text>
-  <line x1="510" y1="142" x2="430" y2="140" stroke="currentColor" stroke-width="1.1" opacity="0.30"/>
-
-  <!-- QSPI peripheral -->
-  <rect x="510" y="178" width="80" height="44" rx="3" fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.36"/>
-  <text x="550" y="198" text-anchor="middle" fill="currentColor" opacity="0.40" font-size="10">QSPI</text>
-  <text x="550" y="212" text-anchor="middle" fill="currentColor" opacity="0.24" font-size="8">quad I/O flash</text>
-  <line x1="510" y1="200" x2="430" y2="200" stroke="currentColor" stroke-width="1.1" opacity="0.28"/>
-
-  <!-- bus connections to peripherals -->
-  <rect x="420" y="62" width="88" height="170" rx="2" fill="none" stroke="currentColor" stroke-width="0.7" opacity="0.14" stroke-dasharray="4,3"/>
-  <text x="464" y="246" text-anchor="middle" fill="currentColor" opacity="0.20" font-size="8">peripheral space</text>
-  <line x1="370" y1="207" x2="420" y2="207" stroke="currentColor" stroke-width="1" opacity="0.22"/>
-
-  <!-- annotations -->
-  <text x="350" y="250" text-anchor="middle" fill="currentColor" opacity="0.25" font-size="10">FPGA validated → Cadence synthesis + P&amp;R on SKY130A</text>
+  <!-- Annotation -->
+  <text x="350" y="170" text-anchor="middle" fill="currentColor" opacity="0.26" font-size="9">Posit allocates more precision near zero — where neural network activations cluster — reducing hardware cost</text>
 </svg>
 </figure>
 
+<p>Posit arithmetic concentrates precision around values near zero, which is precisely where neural network activations cluster after batch normalisation. This allows the same bit-width to encode more useful resolution for inference while simplifying the hardware (no NaN/Inf special cases, smaller multiplier logic).</p>
 <hr />
-<h2 id="core-and-peripherals">Core and peripherals</h2>
-<p><strong>RV32IM core:</strong> Implements the full RV32I base ISA (40 instructions) plus the M-extension (integer multiply and divide). The multiplier uses a combinational array multiplier; the divider is an iterative non-restoring design. Both complete in a fixed number of cycles, making timing analysis straightforward.</p>
-<p><strong>UART:</strong> Configurable baud rate, 8N1 frame format, transmit and receive FIFOs to decouple the processor from byte timing constraints. The FIFO depth was sized to handle back-to-back bytes at maximum baud without a software busy-wait loop.</p>
-<p><strong>SPI:</strong> Full-duplex, CPOL/CPHA configurable (all four modes), chip-select control, master-only. Targets external flash and sensor interfaces. The bit-rate divisor is software-programmable for slow sensor devices through the same register interface.</p>
-<p><strong>QSPI:</strong> Quad-SPI extension adding four parallel data lines for higher-bandwidth flash reads. Supports single/dual/quad I/O mode selection; the mode is switchable at runtime via the command byte. Read throughput is 4× a conventional SPI link at the same clock frequency.</p>
+<h2 id="work-in-progress">Work in progress</h2>
+<table>
+<thead>
+<tr>
+<th>Track</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>YOLOv8 baseline profiling (Python/PyTorch)</td>
+<td>Complete</td>
+</tr>
+<tr>
+<td>Layer-wise sensitivity analysis for quantisation</td>
+<td>In progress</td>
+</tr>
+<tr>
+<td>Posit-8 and Posit-16 inference emulation</td>
+<td>In progress</td>
+</tr>
+<tr>
+<td>FPGA datapath prototype (Verilog)</td>
+<td>Planned</td>
+</tr>
+<tr>
+<td>Accuracy vs hardware cost characterisation</td>
+<td>Planned</td>
+</tr>
+</tbody>
+</table>
+<p>The investigation is part of broader research into approximate computing for edge AI, targeting applications where sensor-to-inference latency and energy budget are more constrained than peak accuracy.</p>
 <hr />
-<h2 id="verification-and-implementation">Verification and implementation</h2>
-<p>The RTL was verified through a structured digital verification methodology:</p>
-<div class="codehilite"><pre><span></span><code>tb_top
-├── risc_v_soc (DUT)
-│   ├── rv32im_core
-│   ├── uart_ctrl
-│   ├── spi_master
-│   └── qspi_ctrl
-├── uart_model  (BFM)
-├── spi_slave   (BFM)
-└── test_programs/ (assembled RV32IM binaries)
-</code></pre></div>
-
-<p>Each peripheral was validated in isolation against a bus functional model, then integrated and tested with real firmware binaries assembled and linked using the RISC-V GNU toolchain.</p>
-<p><strong>FPGA validation</strong> on Xilinx confirmed functional correctness end-to-end: firmware running on the core, generating SPI transactions captured on a logic analyser, UART output verified over a terminal connection.</p>
-<p><strong>SKY130A physical flow</strong> used the Cadence Design Suite (Genus synthesis, Innovus P&amp;R). Key challenges: the SKY130A timing library required manual constraint tuning for the SRAM-like register file, and the open PDK's cell library has a limited drive-strength range that required cell swapping to close timing at the target frequency.</p>
+<h2 id="tools">Tools</h2>
+<p>Python · PyTorch · Ultralytics YOLOv8 · SoftPosit (posit emulation library) · Xilinx Vivado · FPGA (Artix-7)</p>
   </div>
   
 
@@ -451,7 +435,7 @@
   "itemListElement": [
     {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://devesh-b.github.io/"},
     {"@type": "ListItem", "position": 2, "name": "Projects", "item": "https://devesh-b.github.io/projects/"},
-    {"@type": "ListItem", "position": 3, "name": "Embedded SoC Design (RV32IM)", "item": "https://devesh-b.github.io/projects/embedded-soc/"}
+    {"@type": "ListItem", "position": 3, "name": "YOLOv8 Hardware Accelerator", "item": "https://devesh-b.github.io/projects/yolov8-accelerator/"}
   ]
 }
 </script>

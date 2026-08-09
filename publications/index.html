@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="academic-light">
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -95,7 +96,7 @@
 }
 </script>
 
-  <link rel="stylesheet" crossorigin href="/assets/syntax-DZmWuzJg.css">
+  <link rel="stylesheet" crossorigin href="/assets/syntax-BjyLEYh9.css">
 </head>
 <body class="min-h-screen bg-base-100 text-base-content antialiased">
 
@@ -229,7 +230,7 @@
   </header>
 
   <!-- Page content -->
-  <main class="pt-14">
+  <main id="main-content" class="pt-14">
     
 
 <div class="max-w-4xl mx-auto px-6 py-20">
@@ -288,7 +289,7 @@
           </div>
           
           <div id="abs-1" class="abs-body overflow-hidden" style="max-height:0;transition:max-height 0.3s ease">
-            <p class="mt-3 text-xs text-base-content/65 leading-relaxed max-w-2xl">Presents a quadrature digitally-controlled oscillator using dual superharmonic coupling injection for low phase noise and accurate quadrature generation in 55nm CMOS, targeting Ka-band SATCOM LO synthesis.</p>
+            <p class="mt-3 text-xs text-base-content/65 leading-relaxed max-w-2xl">This paper presents a novel approach to mm-W quadrature differentially controlled dual superharmonic injected digitally controlled oscillator (QDCO). Dual-harmonic injection is adopted to reduce phase noise and improve spectral efficiency. The proposed oscillator supports a frequency range from 26.2 GHz to 32.5 GHz. The simulated results show phase noise of −125.38 dBc/Hz at 1 MHz offset and a jitter of 18.23 fs, with each oscillator core consuming only 5.96 mW on a 1.2 V supply. These results confirm the QDCO's superior phase noise performance and frequency stability for advanced wireless and radar applications requiring accurate timing and signal integrity.</p>
           </div>
           
         </div>
@@ -339,7 +340,7 @@
           </div>
           
           <div id="abs-2" class="abs-body overflow-hidden" style="max-height:0;transition:max-height 0.3s ease">
-            <p class="mt-3 text-xs text-base-content/65 leading-relaxed max-w-2xl">Comparative analysis of LC-tank and current-starved VCO-based ADC architectures, examining phase noise, linearity, and power trade-offs relevant to mixed-signal system design.</p>
+            <p class="mt-3 text-xs text-base-content/65 leading-relaxed max-w-2xl">This paper presents a study that explores the performance of a voltage-controlled oscillator (VCO) based analog-to-digital converter (ADC) using an LC tank oscillator, a design approach that diverges from the commonly used current-starved or ring oscillator-based VCOs. The unique advantages and challenges of using an LC tank VCO in ADC applications are highlighted. A comparative analysis between the LC tank and the current-starved VCO-ADC is presented, focusing on key performance metrics including accuracy, spectral purity, power consumption, jitter, and phase noise. Simulations were conducted using Cadence Virtuoso with a 180-nm CMOS process.</p>
           </div>
           
         </div>
@@ -377,11 +378,20 @@
           </div>
           <div class="mt-2.5 flex flex-wrap items-center gap-3">
             
+            <button class="abs-toggle flex items-center gap-1 text-xs font-mono text-base-content/45 hover:text-primary transition-colors"
+                    onclick="toggleAbstract('abs-3', this)">
+              <span class="abs-arrow" style="display:inline-block;width:0.7em">▸</span> abstract
+            </button>
+            
             <button class="flex items-center gap-1 text-xs font-mono text-base-content/45 hover:text-primary transition-colors"
                     onclick="copyBib('bib-3', this)">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
               <span class="bib-label">BibTeX</span>
             </button>
+          </div>
+          
+          <div id="abs-3" class="abs-body overflow-hidden" style="max-height:0;transition:max-height 0.3s ease">
+            <p class="mt-3 text-xs text-base-content/65 leading-relaxed max-w-2xl">The paper proposes novel face semantic segmentation for person identification using FMU-Net, a model that amalgamates components from Residual U-Net and Mobile U-Net architectures to extract precise facial features from newly devised annotated masks. Semantic maps serve as the foundation for training, and test semantic maps are subsequently evaluated across various neural network architectures. A classification layer is integrated with the segmentation model for combined segmentation and identity recognition, evaluated through metrics such as the F1 score. FMU-Net surpasses conventional counterparts while improving time efficiency and reducing model complexity through novel annotated semantic masks.</p>
           </div>
           
         </div>
