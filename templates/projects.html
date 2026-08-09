@@ -395,7 +395,7 @@
     <button class="proj-pill tag-pill active px-2.5 py-1 text-xs font-mono rounded-md bg-base-200 text-base-content/65"
             onclick="filterProjects(null, this)">All</button>
     {% for cat in page.categories %}
-    {% set pc = 'accent' if ('IC' in cat.name or 'Analog' in cat.name) else ('primary' if 'Digital' in cat.name else 'teal') %}
+    {% set pc = 'accent' if ('IC' in cat.name or 'Analog' in cat.name) else ('primary' if 'Digital' in cat.name else 'plum') %}
     <button class="proj-pill tag-pill px-2.5 py-1 text-xs font-mono rounded-md bg-base-200 text-base-content/65 flex items-center gap-1.5"
             onclick="filterProjects('{{ cat.name }}', this)" data-filter="{{ cat.name }}">
       <span class="w-1.5 h-1.5 rounded-full bg-{{ pc }} inline-block flex-shrink-0"></span>
@@ -412,18 +412,18 @@
       <div class="font-mono text-xs uppercase tracking-widest font-semibold
         {%- if 'IC' in category.name or 'Analog' in category.name %} text-accent
         {%- elif 'Digital' in category.name %} text-primary
-        {%- else %} text-teal{%- endif %}">{{ category.name }}</div>
+        {%- else %} text-plum{%- endif %}">{{ category.name }}</div>
       <div class="w-28 h-8 flex-shrink-0 overflow-hidden opacity-90
         {%- if 'IC' in category.name or 'Analog' in category.name %} text-accent
         {%- elif 'Digital' in category.name %} text-primary
-        {%- else %} text-teal{%- endif %}">
+        {%- else %} text-plum{%- endif %}">
         {{ category_header_svg(category.name) }}
       </div>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {% for proj in category.entries %}
-      {% set cat_color = 'accent' if ('IC' in category.name or 'Analog' in category.name) else ('primary' if 'Digital' in category.name else 'teal') %}
+      {% set cat_color = 'accent' if ('IC' in category.name or 'Analog' in category.name) else ('primary' if 'Digital' in category.name else 'plum') %}
       {% if proj.slug %}
       <a href="/projects/{{ proj.slug }}/"
          data-category="{{ category.name }}"
