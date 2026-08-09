@@ -427,10 +427,10 @@
       {% if proj.slug %}
       <a href="/projects/{{ proj.slug }}/"
          data-category="{{ category.name }}"
-         class="card-glow flex flex-col card-elevated border border-{{ cat_color }}/20 rounded-xl overflow-hidden bg-{{ cat_color }}/5 hover:border-{{ cat_color }}/50 group">
+         class="card-tilt card-glow flex flex-col card-elevated border border-{{ cat_color }}/20 rounded-xl overflow-hidden bg-{{ cat_color }}/5 hover:border-{{ cat_color }}/50 group">
       {% else %}
       <div data-category="{{ category.name }}"
-           class="card-glow flex flex-col card-elevated border border-{{ cat_color }}/20 rounded-xl overflow-hidden bg-{{ cat_color }}/5 group">
+           class="card-tilt card-glow flex flex-col card-elevated border border-{{ cat_color }}/20 rounded-xl overflow-hidden bg-{{ cat_color }}/5 group">
       {% endif %}
 
         <!-- Card visual header -->
@@ -477,6 +477,7 @@
           </div>
         </div>
 
+        <div class="card-peek bg-{{ cat_color }}"></div>
       {% if proj.slug %}</a>{% else %}</div>{% endif %}
       {% endfor %}
     </div>
@@ -490,6 +491,26 @@
 </div>
 
 <script>
+  /* ── 3D card tilt ───────────────────────────────────────────── */
+  (function () {
+    if (window.matchMedia('(hover: none)').matches) return;
+    document.querySelectorAll('.card-tilt').forEach(function (card) {
+      card.addEventListener('mouseenter', function () {
+        card.style.transition = 'none';
+      });
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        var dx = (e.clientX - r.left - r.width / 2) / (r.width / 2);
+        var dy = (e.clientY - r.top - r.height / 2) / (r.height / 2);
+        card.style.transform = 'perspective(800px) rotateX(' + (-dy * 4) + 'deg) rotateY(' + (dx * 4) + 'deg) translateZ(4px)';
+      });
+      card.addEventListener('mouseleave', function () {
+        card.style.transition = 'transform 0.5s ease';
+        card.style.transform = '';
+      });
+    });
+  })();
+
   function filterProjects(cat, btn) {
     document.querySelectorAll('.proj-pill').forEach(function(p) { p.classList.remove('active'); });
     if (btn) btn.classList.add('active');

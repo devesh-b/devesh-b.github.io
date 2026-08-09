@@ -28,9 +28,9 @@
         <!-- Stats strip -->
         {% if page.stats %}
         <div class="mt-3 flex items-center gap-4 text-xs font-mono text-base-content/35">
-          <span>{{ page.stats.publications }} publications</span>
+          <span><span class="stat-count" data-target="{{ page.stats.publications }}">{{ page.stats.publications }}</span> publications</span>
           <span aria-hidden>·</span>
-          <span>{{ page.stats.projects }} projects</span>
+          <span><span class="stat-count" data-target="{{ page.stats.projects }}">{{ page.stats.projects }}</span> projects</span>
           <span aria-hidden>·</span>
           <span>{{ page.stats.roles }}</span>
         </div>
@@ -159,14 +159,17 @@
   <section class="pb-4">
     <div class="section-panel">
       <div class="eyebrow eyebrow-accent eyebrow-accent-amber mb-5">Skills &amp; Tools</div>
+      {% set chip_ns = namespace(i=0) %}
       <div class="space-y-4">
         {% for group in page.skills %}
         <div>
           <div class="text-xs font-mono text-base-content/45 mb-2 uppercase tracking-wider">{{ group.category }}</div>
           <div class="flex flex-wrap gap-2">
             {% for tool in group.tools %}
-            <span class="px-2.5 py-1 rounded-md text-xs font-mono border
-                         bg-{{ group.color }}/8 text-{{ group.color }} border-{{ group.color }}/25">{{ tool }}</span>
+            <span class="skill-chip px-2.5 py-1 rounded-md text-xs font-mono border
+                         bg-{{ group.color }}/8 text-{{ group.color }} border-{{ group.color }}/25"
+                  style="--chip-delay: {{ chip_ns.i * 40 }}ms">{{ tool }}</span>
+            {% set chip_ns.i = chip_ns.i + 1 %}
             {% endfor %}
           </div>
         </div>
@@ -183,7 +186,7 @@
       <div class="eyebrow eyebrow-accent eyebrow-accent-teal mb-5">Journey</div>
       <div class="pl-4 timeline-track space-y-8">
         {% for item in page.news %}
-        <div class="relative pl-6">
+        <div class="timeline-item relative pl-6" style="--item-delay: {{ loop.index0 * 80 }}ms">
           <div class="absolute -left-[5px] top-[6px] w-2.5 h-2.5 rounded-full bg-primary border-2 border-base-100"></div>
           <div class="font-mono text-xs text-base-content/60 uppercase tracking-wider mb-1">{{ item.date }}</div>
           <p class="text-sm text-base-content/85 leading-relaxed">
@@ -263,5 +266,44 @@
   {% endif %}
 
 </div>
+
+<script>
+  /* ── Animated stat counters ─────────────────────────────────── */
+  (function () {
+    var els = document.querySelectorAll('.stat-count[data-target]');
+    if (!els.length) return;
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var target = parseInt(el.dataset.target, 10);
+        if (isNaN(target)) return;
+        var t0 = performance.now();
+        var dur = 900;
+        (function tick(now) {
+          var p = Math.min((now - t0) / dur, 1);
+          var e = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(e * target);
+          if (p < 1) requestAnimationFrame(tick);
+        })(t0);
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.8 });
+    els.forEach(function (el) { observer.observe(el); });
+  })();
+
+  /* ── Timeline stagger reveal ─────────────────────────────────── */
+  (function () {
+    var track = document.querySelector('.timeline-track');
+    if (!track) return;
+    var observer = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) {
+        track.classList.add('timeline-ready');
+        observer.disconnect();
+      }
+    }, { threshold: 0.12 });
+    observer.observe(track);
+  })();
+</script>
 
 {% endblock %}

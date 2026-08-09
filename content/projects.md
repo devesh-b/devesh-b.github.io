@@ -73,12 +73,6 @@ categories:
         tags: [Python, Posit, Approximate Computing, FPGA]
         status: "In Progress"
 
-      - title: "FMU-NET: Semantic Segmentation for Person ID"
-        description: "Novel semantic segmentation architecture for person identification. Published at EASCT 2023."
-        tags: [PyTorch, Computer Vision, Segmentation]
-        slug: "fmu-net"
-        status: "Published"
-
       - title: "ATM Management System"
         description: "Python ATM simulator with facial recognition as the authentication layer, using OpenCV, Tkinter, and MySQL."
         tags: [Python, OpenCV, MySQL, Biometrics]
