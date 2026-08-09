@@ -27,7 +27,8 @@
     })();
   </script>
 
-  <link rel="stylesheet" crossorigin href="/assets/syntax-BLQJDPR-.css">
+  <link rel="alternate" type="application/atom+xml" title="Devesh Bhaskaran" href="data:text/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPGZlZWQgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDUvQXRvbSI+CiAgPHRpdGxlPkRldmVzaCBCaGFza2FyYW48L3RpdGxlPgogIDxzdWJ0aXRsZT5EaWdpdGFsIERlc2lnbiBFbmdpbmVlciBhdCBBbmFsb2cgRGV2aWNlcyBJbmRpYSDigJQgd29ya2luZyBhdCB0aGUgYm91bmRhcnkgd2hlcmUgZGlnaXRhbCwgYW5hbG9nLCBhbmQgUkYgaGF2ZSB0byBsZWFybiB0byBsaXZlIHRvZ2V0aGVyLjwvc3VidGl0bGU+CiAgPGxpbmsgaHJlZj0iaHR0cHM6Ly9kZXZlc2gtYi5naXRodWIuaW8vZmVlZC54bWwiIHJlbD0ic2VsZiIgdHlwZT0iYXBwbGljYXRpb24vYXRvbSt4bWwiLz4KICA8bGluayBocmVmPSJodHRwczovL2RldmVzaC1iLmdpdGh1Yi5pby8iLz4KICA8dXBkYXRlZD4yMDI1LTA1LTAxVDAwOjAwOjAwWjwvdXBkYXRlZD4KICA8aWQ+aHR0cHM6Ly9kZXZlc2gtYi5naXRodWIuaW8vPC9pZD4KICA8YXV0aG9yPgogICAgPG5hbWU+RGV2ZXNoIEJoYXNrYXJhbjwvbmFtZT4KICA8L2F1dGhvcj4KICAKICA8ZW50cnk+CiAgICA8dGl0bGU+U0FUQ09NIHRyYW5zY2VpdmVycyDigJQgaG93IHRoZXkgd29yayBhbmQgd2hlcmUgdGhlIGhhcmQgcHJvYmxlbXMgYXJlPC90aXRsZT4KICAgIDxsaW5rIGhyZWY9Imh0dHBzOi8vZGV2ZXNoLWIuZ2l0aHViLmlvL3Bvc3RzLzIwMjUtMDUtMDEtc2F0Y29tLXRyYW5zY2VpdmVycy8iLz4KICAgIDxpZD5odHRwczovL2RldmVzaC1iLmdpdGh1Yi5pby9wb3N0cy8yMDI1LTA1LTAxLXNhdGNvbS10cmFuc2NlaXZlcnMvPC9pZD4KICAgIDx1cGRhdGVkPjIwMjUtMDUtMDFUMDA6MDA6MDBaPC91cGRhdGVkPgogICAgCiAgICA8c3VtbWFyeT5BIHRlY2huaWNhbCBvdmVydmlldyBvZiBzYXRlbGxpdGUgY29tbXVuaWNhdGlvbiB0cmFuc2NlaXZlciBhcmNoaXRlY3R1cmUsIHdpdGggYSBmb2N1cyBvbiBLYS1iYW5kIHN5c3RlbXMgYW5kIHRoZSBvcGVuIElDIGRlc2lnbiBwcm9ibGVtcyB0aGF0IHN0aWxsIGRvbiYjMzk7dCBoYXZlIGNsZWFuIGFuc3dlcnMuPC9zdW1tYXJ5PgogICAgCiAgICAKICAgIAogICAgPGNhdGVnb3J5IHRlcm09IlJGIi8+CiAgICAKICAgIDxjYXRlZ29yeSB0ZXJtPSJTQVRDT00iLz4KICAgIAogICAgPGNhdGVnb3J5IHRlcm09ImNpcmN1aXRzIi8+CiAgICAKICAgIDxjYXRlZ29yeSB0ZXJtPSJyZXNlYXJjaCIvPgogICAgCiAgICAKICA8L2VudHJ5PgogIAo8L2ZlZWQ+">
+  <link rel="stylesheet" crossorigin href="/assets/syntax-47D8HFrM.css">
 </head>
 <body class="min-h-screen bg-base-100 text-base-content antialiased">
 
@@ -37,6 +38,24 @@
   <div id="cursor-halo" aria-hidden="true"></div>
   <!-- Grain texture -->
   <div id="grain" aria-hidden="true"></div>
+
+  <!-- Search modal -->
+  <div id="search-modal" role="dialog" aria-modal="true" aria-label="Search">
+    <div id="search-backdrop" onclick="closeSearch()"></div>
+    <div id="search-box">
+      <div id="search-input-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 flex-shrink-0 text-base-content/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="search-input" type="text" placeholder="Search posts and projects…" autocomplete="off" spellcheck="false">
+        <kbd style="font-family:var(--font-mono);font-size:0.7rem;padding:0.15rem 0.4rem;background:var(--color-base-200);border:1px solid var(--color-base-300);border-radius:0.25rem;color:var(--color-base-content);opacity:0.5">esc</kbd>
+      </div>
+      <div id="search-results"></div>
+      <div id="search-footer">
+        <span><kbd>↑↓</kbd> navigate</span>
+        <span><kbd>↵</kbd> open</span>
+        <span><kbd>esc</kbd> close</span>
+      </div>
+    </div>
+  </div>
 
   <!-- Navbar -->
   <header class="navbar-blur fixed top-0 left-0 right-0 z-50 border-b border-base-300">
@@ -108,6 +127,13 @@
 
       <!-- Right actions -->
       <div class="flex items-center gap-1">
+        <!-- Search -->
+        <button onclick="openSearch()" title="Search (⌘K)"
+                class="hidden md:flex items-center gap-1.5 px-2 py-1.5 rounded text-sm text-base-content/45 hover:text-base-content transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span class="text-xs font-mono opacity-60">⌘K</span>
+        </button>
+
         <!-- CV PDF link -->
         <a href="/assets/pdf/Devesh_Academic_CV.pdf"
            target="_blank" rel="noopener"
@@ -385,6 +411,110 @@
         document.getElementById('icon-close').classList.add('hidden');
       }
     });
+  </script>
+
+  <!-- Search -->
+  <script>
+    var _srData = null, _srSel = -1, _srTimer;
+
+    function openSearch() {
+      var modal = document.getElementById('search-modal');
+      var input = document.getElementById('search-input');
+      modal.classList.add('open');
+      input.focus();
+      input.value = '';
+      document.getElementById('search-results').innerHTML = '';
+      _srSel = -1;
+      if (!_srData) {
+        fetch('/search.json').then(function(r) { return r.json(); }).then(function(d) { _srData = d; });
+      }
+    }
+
+    function closeSearch() {
+      document.getElementById('search-modal').classList.remove('open');
+    }
+
+    function _esc(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function _renderSearch(q) {
+      var box = document.getElementById('search-results');
+      if (!q || !_srData) { box.innerHTML = ''; return; }
+      var ql = q.toLowerCase();
+      var hits = _srData.filter(function(it) {
+        return it.title.toLowerCase().indexOf(ql) !== -1 ||
+               (it.description || '').toLowerCase().indexOf(ql) !== -1 ||
+               (it.tags || []).some(function(t) { return t.toLowerCase().indexOf(ql) !== -1; });
+      }).slice(0, 8);
+      _srSel = -1;
+      if (!hits.length) {
+        box.innerHTML = '<div class="search-empty">No results for "' + _esc(q) + '"</div>';
+        return;
+      }
+      box.innerHTML = hits.map(function(it, i) {
+        var badge = it.type === 'post'
+          ? '<span class="sr-badge sr-post">Post</span>'
+          : '<span class="sr-badge sr-project">Project</span>';
+        return '<a href="' + it.url + '/" class="search-result" data-i="' + i + '" onclick="closeSearch()">' +
+          badge + '<div><div class="sr-title">' + _esc(it.title) + '</div>' +
+          (it.description ? '<div class="sr-desc">' + _esc(it.description) + '</div>' : '') +
+          '</div></a>';
+      }).join('');
+    }
+
+    document.addEventListener('input', function(e) {
+      if (e.target.id !== 'search-input') return;
+      clearTimeout(_srTimer);
+      var val = e.target.value.trim();
+      _srTimer = setTimeout(function() { _renderSearch(val); }, 140);
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); return; }
+      if (e.key === '/' && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
+        e.preventDefault(); openSearch(); return;
+      }
+      var modal = document.getElementById('search-modal');
+      if (!modal.classList.contains('open')) return;
+      if (e.key === 'Escape') { closeSearch(); return; }
+      var rows = modal.querySelectorAll('.search-result');
+      if (!rows.length) return;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        _srSel = Math.min(_srSel + 1, rows.length - 1);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        _srSel = Math.max(_srSel - 1, -1);
+      } else if (e.key === 'Enter' && _srSel >= 0) {
+        e.preventDefault(); rows[_srSel].click(); return;
+      }
+      rows.forEach(function(r, i) { r.classList.toggle('sr-selected', i === _srSel); });
+      if (_srSel >= 0) rows[_srSel].scrollIntoView({ block: 'nearest' });
+    });
+  </script>
+
+  <!-- Scroll-reveal -->
+  <script>
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (!window.IntersectionObserver) return;
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.06, rootMargin: '0px 0px -32px 0px' });
+      document.querySelectorAll('main .section-panel, main .card-elevated').forEach(function (el) {
+        var rect = el.getBoundingClientRect();
+        if (rect.top >= window.innerHeight * 0.9) {
+          el.classList.add('reveal');
+          observer.observe(el);
+        }
+      });
+    })();
   </script>
 
   <!-- Scroll progress + back to top -->

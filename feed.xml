@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Devesh Bhaskaran</title>
+  <subtitle>Digital Design Engineer at Analog Devices India — working at the boundary where digital, analog, and RF have to learn to live together.</subtitle>
+  <link href="https://devesh-b.github.io/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://devesh-b.github.io/"/>
+  <updated>2025-05-01T00:00:00Z</updated>
+  <id>https://devesh-b.github.io/</id>
+  <author>
+    <name>Devesh Bhaskaran</name>
+  </author>
+  
+  <entry>
+    <title>SATCOM transceivers — how they work and where the hard problems are</title>
+    <link href="https://devesh-b.github.io/posts/2025-05-01-satcom-transceivers/"/>
+    <id>https://devesh-b.github.io/posts/2025-05-01-satcom-transceivers/</id>
+    <updated>2025-05-01T00:00:00Z</updated>
+    
+    <summary>A technical overview of satellite communication transceiver architecture, with a focus on Ka-band systems and the open IC design problems that still don&#39;t have clean answers.</summary>
+    
+    
+    
+    <category term="RF"/>
+    
+    <category term="SATCOM"/>
+    
+    <category term="circuits"/>
+    
+    <category term="research"/>
+    
+    
+  </entry>
+  
+</feed>
